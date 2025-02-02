@@ -1,5 +1,7 @@
 import 'package:bpsdm_mobilev1/providers/api_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+// import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FaqScreen extends ConsumerWidget {
@@ -56,6 +58,9 @@ class FaqScreen extends ConsumerWidget {
                       : ListView.builder(
                           itemCount: filteredFAQ.length,
                           itemBuilder: (context, index) {
+                            String contentAnswer = filteredFAQ[index].answer;
+                            bool containsHtml = contentAnswer.contains("<") &&
+                                contentAnswer.contains(">");
                             return Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8.0, vertical: 4),
@@ -66,19 +71,18 @@ class FaqScreen extends ConsumerWidget {
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500),
                                   ),
-                                  // subtitle: Text(
-                                  //   faqs[index].answer,
-                                  //   maxLines: 2,
-                                  //   overflow: TextOverflow.ellipsis,
-                                  // ),
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16.0, vertical: 8),
-                                      child: Text(
-                                        filteredFAQ[index].answer,
-                                        textAlign: TextAlign.justify,
-                                      ),
+                                      // child:
+                                      // Html(data: filteredFAQ[index].answer),
+                                      child: containsHtml
+                                          ? Html(data: contentAnswer)
+                                          : Text(
+                                              contentAnswer,
+                                              textAlign: TextAlign.justify,
+                                            ),
                                     )
                                   ],
                                 ),

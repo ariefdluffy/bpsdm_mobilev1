@@ -53,3 +53,11 @@ final searchQueryProvider = StateProvider<String>((ref) => "");
 final textEditingControllerProvider = Provider<TextEditingController>((ref) {
   return TextEditingController();
 });
+
+/// Provider untuk menyimpan ukuran layar
+final screenSizeProvider = StateProvider<ScreenSize>((ref) {
+  return ScreenSize.mobile; // Default Mobile
+});
+
+/// Enum untuk menentukan tipe layar
+enum ScreenSize { mobile, desktop }
