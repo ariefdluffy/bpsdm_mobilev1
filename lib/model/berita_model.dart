@@ -12,7 +12,7 @@ class BeritaModel {
     required this.linkBerita,
   });
 
-  factory BeritaModel.toJson(Map<String, dynamic> json) {
+  factory BeritaModel.fromJson(Map<String, dynamic> json) {
     return BeritaModel(
       imgUrl: json['imgUrl'] ?? '',
       judul: json['judul'] ?? '',

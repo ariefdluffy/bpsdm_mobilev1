@@ -1,5 +1,6 @@
 // import 'package:flutter/foundation.dart';
 import 'package:bpsdm_mobilev1/screen/berita_screen.dart';
+import 'package:bpsdm_mobilev1/screen/dashboard.dart';
 import 'package:bpsdm_mobilev1/screen/faq_screen.dart';
 import 'package:bpsdm_mobilev1/screen/jadwal_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = [
+    const Dashboard(),
     const JadwalScreen(),
-    const BeritaScreen(),
+    // const BeritaScreen(),
     const FaqScreen(),
   ];
 
@@ -32,10 +34,14 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white, // Warna latar belakang
+        selectedItemColor: Colors.blue, // Warna ikon terpilih
+        unselectedItemColor: Colors.grey,
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
               icon: Icon(Icons.calendar_today), label: "Jadwal"),
-          BottomNavigationBarItem(icon: Icon(Icons.article), label: "Berita"),
+          // BottomNavigationBarItem(icon: Icon(Icons.article), label: "Berita"),
           BottomNavigationBarItem(
               icon: Icon(Icons.question_answer), label: "FaQ"),
         ],

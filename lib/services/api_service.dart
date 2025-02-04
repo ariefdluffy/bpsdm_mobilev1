@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 class ApiService {
   final linkBerita = '';
 
+  // final String baseUrl =
+  //     "http://11.11.11.19:5000/api"; // Ganti dengan URL server kamu
   final String baseUrl =
       "https://sincere-longhaired-evening.glitch.me/api"; // Ganti dengan URL server kamu
 
@@ -28,21 +30,39 @@ class ApiService {
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
 
-      return data.map((json) => BeritaModel.toJson(json)).toList();
+      return data.map((json) => BeritaModel.fromJson(json)).toList();
     } else {
       throw Exception("Gagal mengambil data berita");
     }
   }
 
+  // Future<DetailModel> fetchDetailBerita(String url) async {
+  //   final response =
+  //       await http.get(Uri.parse('$baseUrl/berita/detail/?url=$url'));
+
+  //   // print('url: ${response.body}');
+  //   if (response.statusCode == 200) {
+  //     final data = json.decode(response.body);
+
+  //     return DetailModel.toJson(data);
+  //   } else {
+  //     throw Exception("Gagal mengambil detail berita");
+  //   }
+  // }
   Future<DetailModel> fetchDetailBerita(String url) async {
-    final response =
-        await http.get(Uri.parse('$baseUrl/berita/detail/?url=$url'));
+    final Uri apiUrl = Uri.parse('$baseUrl/berita/detail');
+    // print(apiUrl);
+    final response = await http.post(
+      apiUrl,
+      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      body: {"url": url},
+    );
 
     // print('url: ${response.body}');
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
 
-      return DetailModel.toJson(data);
+      return DetailModel.fromJson(data);
     } else {
       throw Exception("Gagal mengambil detail berita");
     }

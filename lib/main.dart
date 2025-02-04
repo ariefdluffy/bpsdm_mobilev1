@@ -1,8 +1,11 @@
 import 'package:bpsdm_mobilev1/main_screen.dart';
-import 'package:bpsdm_mobilev1/providers/api_provider.dart';
 import 'package:bpsdm_mobilev1/services/api_supabase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:bpsdm_mobilev1/screen/berita_screen.dart';
+import 'package:bpsdm_mobilev1/screen/dashboard.dart';
+import 'package:bpsdm_mobilev1/screen/faq_screen.dart';
+import 'package:bpsdm_mobilev1/screen/jadwal_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +20,14 @@ class MainApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: "/",
+      routes: {
+        // "/": (context) => const Dashboard(),
+        "/jadwal": (context) => const JadwalScreen(),
+        "/berita": (context) => const BeritaScreen(),
+        "/faq": (context) => const FaqScreen(),
+        "/contact": (context) => const FaqScreen(),
+      },
       home: Scaffold(
         body: Center(
           child: LayoutBuilder(

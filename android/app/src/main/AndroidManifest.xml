@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="bpsdm_mobilev1"
+        android:label="BPSDMKaltim"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

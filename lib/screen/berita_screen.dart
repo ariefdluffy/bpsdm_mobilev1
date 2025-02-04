@@ -29,15 +29,19 @@ class BeritaScreen extends ConsumerWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 14),
               ),
-              trailing: Image.network(
-                item.imgUrl,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return const Center(child: CircularProgressIndicator());
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.error, size: 50, color: Colors.red);
-                },
+              trailing: SizedBox(
+                height: 75,
+                width: 75,
+                child: Image.network(
+                  item.imgUrl,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.error, size: 50, color: Colors.red);
+                  },
+                ),
               ),
               onTap: () {
                 ref.read(linkBeritaProvider.notifier).state = item.linkBerita;

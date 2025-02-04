@@ -9,7 +9,7 @@ class DetailModel {
     required this.judul,
   });
 
-  factory DetailModel.toJson(Map<String, dynamic> json) {
+  factory DetailModel.fromJson(Map<String, dynamic> json) {
     return DetailModel(
         imgUrl: json['image'] ?? '',
         judul: json['title'] ?? '',
