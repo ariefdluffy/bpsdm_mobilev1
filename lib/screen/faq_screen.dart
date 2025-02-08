@@ -65,12 +65,18 @@ class FaqScreen extends ConsumerWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8.0, vertical: 4),
                               child: Card(
+                                elevation: 4,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                                 child: ExpansionTile(
                                   title: Text(
                                     filteredFAQ[index].question,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500),
                                   ),
+                                  leading: const Icon(Icons.question_answer,
+                                      color: Colors.blueAccent),
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.symmetric(

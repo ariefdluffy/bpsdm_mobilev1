@@ -11,31 +11,45 @@ class _DashboardState extends State<Dashboard> {
   final List<Map<String, dynamic>> menuItems = [
     {
       "title": "Jadwal",
-      "subtitle": "Jadwal Pelatihan BPSDM",
+      "subtitle": "Pelatihan",
       "icon": Icons.event,
       "route": "/jadwal",
       "color": Colors.blue
     },
     {
       "title": "Berita",
-      "subtitle": "Baca Berita Terkini",
+      "subtitle": "Terkini",
       "icon": Icons.article,
       "route": "/berita",
       "color": Colors.green
     },
     {
       "title": "FAQ",
-      "subtitle": "Pertanyaan yang sering diajukan",
+      "subtitle": "",
       "icon": Icons.help,
       "route": "/faq",
       "color": Colors.orange
     },
     {
-      "title": "Contact",
-      "subtitle": "Hubungi kami",
-      "icon": Icons.contact_phone,
-      "route": "/contact",
+      "title": "Struktur",
+      "subtitle": "Organisasi",
+      "icon": Icons.group_remove_rounded,
+      "route": "/organisasi",
       "color": Colors.red
+    },
+    {
+      "title": "Pengaduan",
+      "subtitle": "Lapor.go.id",
+      "icon": Icons.report_gmailerrorred,
+      "route": "/pengaduan",
+      "color": Colors.red
+    },
+    {
+      "title": "Visi-Misi",
+      "subtitle": "Organisasi",
+      "icon": Icons.account_balance_outlined,
+      "route": "/visimisi",
+      "color": Colors.blueGrey
     },
   ];
 
@@ -44,7 +58,7 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               Padding(
@@ -62,14 +76,20 @@ class _DashboardState extends State<Dashboard> {
                         const Opacity(opacity: 0.2),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(15),
+                          // child: Image.asset(
+                          //   "assets/banner/banner_1.jpg", // Ambil gambar tanpa daftar satu per satu
+                          //   width: 200,
+                          //   height: 200,
+                          //   fit: BoxFit.cover,
+                          // ),
                         ),
 
                         // Teks di Atas Gambar
                         const Positioned(
-                          bottom: 10,
-                          left: 10,
+                          bottom: 20,
+                          left: 20,
                           child: Text(
-                            "Selamat Datang di Dashboard",
+                            "Selamat Datang di BPSDM Mobile",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -88,9 +108,9 @@ class _DashboardState extends State<Dashboard> {
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4, // 2 kolom dalam satu baris
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
                     childAspectRatio: 1, // Rasio ukuran card
                   ),
                   itemCount: menuItems.length,
@@ -108,21 +128,21 @@ class _DashboardState extends State<Dashboard> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(item["icon"], size: 24, color: item["color"]),
+                            Icon(item["icon"], size: 22, color: item["color"]),
                             const SizedBox(height: 5),
                             Text(
                               item["title"],
                               style: const TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            // Text(
-                            //   item["subtitle"],
-                            //   style: const TextStyle(
-                            //     fontSize: 12,
-                            //   ),
-                            // ),
+                            Text(
+                              item["subtitle"],
+                              style: const TextStyle(
+                                fontSize: 10,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -130,6 +150,9 @@ class _DashboardState extends State<Dashboard> {
                   },
                 ),
               ),
+              // const Row(
+              //   children: [Text('data')],
+              // )
             ],
           ),
         ),
