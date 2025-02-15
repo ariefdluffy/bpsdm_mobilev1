@@ -1,5 +1,6 @@
 import 'package:bpsdm_mobilev1/model/jadwal_model.dart';
 import 'package:bpsdm_mobilev1/screen/widget/card_jadwal.dart';
+import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/api_provider.dart';
@@ -87,8 +88,13 @@ class JadwalScreen extends ConsumerWidget {
                         ));
                   },
                 ),
-                loading: () => const Center(child: CircularProgressIndicator()),
                 error: (err, stack) => Center(child: Text("Error: $err")),
+                loading: () => Column(
+                  children: List.generate(
+                    5,
+                    (index) => const ShimmerBox(),
+                  ),
+                ),
               ),
             );
           },

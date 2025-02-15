@@ -1,5 +1,6 @@
 import 'package:bpsdm_mobilev1/screen/detail_berita_screen.dart';
 import 'package:bpsdm_mobilev1/screen/widget/card.dart';
+import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/api_provider.dart';
@@ -83,9 +84,13 @@ class BeritaScreen extends ConsumerWidget {
                         // );
                       },
                     ),
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
                     error: (err, stack) => Center(child: Text("Error: $err")),
+                    loading: () => Column(
+                      children: List.generate(
+                        1,
+                        (index) => const ShimmerBox(),
+                      ),
+                    ),
                   ),
                 ),
               );

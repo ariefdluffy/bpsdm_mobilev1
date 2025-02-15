@@ -7,13 +7,19 @@ class PengaduanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Pengaduan'),
+      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             launchUrl(Uri.parse('https://www.lapor.go.id/'),
                 mode: LaunchMode.externalApplication);
           },
-          child: const Text(">>   LAPOR.GO.ID"),
+          child: const Text(
+            "LAPOR.GO.ID",
+            style: TextStyle(fontSize: 19),
+          ),
         ),
       ),
     );

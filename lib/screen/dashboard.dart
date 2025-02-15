@@ -1,3 +1,5 @@
+import 'package:bpsdm_mobilev1/screen/widget/carousel_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -56,59 +58,20 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("BPSDM Mobile"),
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  height: 200,
-                  width: MediaQuery.sizeOf(context).width,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Stack(
-                      children: [
-                        const Opacity(opacity: 0.2),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          // child: Image.asset(
-                          //   "assets/banner/banner_1.jpg", // Ambil gambar tanpa daftar satu per satu
-                          //   width: 200,
-                          //   height: 200,
-                          //   fit: BoxFit.cover,
-                          // ),
-                        ),
-
-                        // Teks di Atas Gambar
-                        const Positioned(
-                          bottom: 20,
-                          left: 20,
-                          child: Text(
-                            "Selamat Datang di BPSDM Mobile",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
+              const ImageSlider(),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                    crossAxisCount: 3,
                     crossAxisSpacing: 8,
                     mainAxisSpacing: 8,
                     childAspectRatio: 1, // Rasio ukuran card

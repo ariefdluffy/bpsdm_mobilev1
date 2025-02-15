@@ -1,4 +1,5 @@
 import 'package:bpsdm_mobilev1/providers/api_provider.dart';
+import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 // import 'package:flutter_html/flutter_html.dart';
@@ -97,7 +98,12 @@ class FaqScreen extends ConsumerWidget {
                           },
                         );
                 },
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => Column(
+                  children: List.generate(
+                    8,
+                    (index) => const ShimmerBox(),
+                  ),
+                ),
                 error: (error, stack) => Center(child: Text('Error: $error')),
               ),
             ),

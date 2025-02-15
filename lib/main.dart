@@ -1,6 +1,7 @@
 import 'package:bpsdm_mobilev1/main_screen.dart';
 import 'package:bpsdm_mobilev1/screen/pengaduan_screen.dart';
 import 'package:bpsdm_mobilev1/screen/struktur_org.dart';
+import 'package:bpsdm_mobilev1/screen/struktur_orgv2.dart';
 import 'package:bpsdm_mobilev1/screen/visi_screen.dart';
 import 'package:bpsdm_mobilev1/services/api_supabase.dart';
 import 'package:flutter/material.dart';
@@ -19,17 +20,29 @@ void main() async {
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
+  void _launchURL() async {
+    final Uri url = Uri.parse("https://www.lapor.go.id/");
+    // ignore: deprecated_member_use
+    if (await canLaunchUrl(url)) {
+      // ignore: deprecated_member_use
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch \$url';
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
-      onGenerateRoute: (settings) {
-        if (settings.name == '/pengaduan') {
-          launchUrl(Uri.parse('https://www.lapor.go.id/'));
-          return null; // Tidak perlu halaman baru
-        }
-      },
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == '/pengaduan') {
+      //     _launchURL('https://www.lapor.go.id/');
+      //     return null; // Tidak perlu halaman baru
+      //   }
+      //   return null;
+      // },
       routes: {
         // "/": (context) => const Dashboard(),
         "/jadwal": (context) => const JadwalScreen(),
@@ -40,6 +53,7 @@ class MainApp extends ConsumerWidget {
         "/visimisi": (context) => const VisiScreen(),
       },
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: Center(
           child: LayoutBuilder(
             builder: (context, constraints) {

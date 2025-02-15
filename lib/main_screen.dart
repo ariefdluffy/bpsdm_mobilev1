@@ -1,5 +1,4 @@
 // import 'package:flutter/foundation.dart';
-import 'package:bpsdm_mobilev1/screen/berita_screen.dart';
 import 'package:bpsdm_mobilev1/screen/dashboard.dart';
 import 'package:bpsdm_mobilev1/screen/faq_screen.dart';
 import 'package:bpsdm_mobilev1/screen/jadwal_screen.dart';
@@ -35,7 +34,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white, // Warna latar belakang
-        selectedItemColor: Colors.blue, // Warna ikon terpilih
+        selectedItemColor: Colors.purple[300], // Warna ikon terpilih
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),

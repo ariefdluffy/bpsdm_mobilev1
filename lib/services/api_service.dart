@@ -67,4 +67,8 @@ class ApiService {
       throw Exception("Gagal mengambil detail berita");
     }
   }
+
+  // Future List<String> imgList = [
+
+  // ];
 }

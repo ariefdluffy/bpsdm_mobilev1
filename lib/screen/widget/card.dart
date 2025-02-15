@@ -94,7 +94,9 @@ class ModernCard extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: Text(
-                        title,
+                        title.length > 90
+                            ? '${title.substring(0, 90)}...'
+                            : title,
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                         // overflow: TextOverflow.ellipsis,
