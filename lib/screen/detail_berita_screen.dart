@@ -12,6 +12,8 @@ class DetailBerita extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Berita Umum'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
       body: beritaAsyncValue.when(
         data: (berita) {

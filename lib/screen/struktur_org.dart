@@ -41,6 +41,8 @@ class StrukturOrg extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Struktur Organisasi'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
       body: Column(
         children: [

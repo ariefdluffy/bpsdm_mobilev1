@@ -61,11 +61,13 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         title: const Text("BPSDM Mobile"),
         backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const ImageSlider(),
               Expanded(

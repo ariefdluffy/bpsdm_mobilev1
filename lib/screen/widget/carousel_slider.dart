@@ -2,6 +2,7 @@ import 'package:bpsdm_mobilev1/providers/api_provider.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ImageSlider extends ConsumerWidget {
@@ -11,44 +12,66 @@ class ImageSlider extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final beritaAsyncValue = ref.watch(beritaProvider);
 
+    String ellipsisText(String text, int maxLength) {
+      return (text.length > maxLength)
+          ? "${text.substring(0, maxLength)}..."
+          : text;
+    }
+
     return beritaAsyncValue.when(
       data: (beritaList) => CarouselSlider(
         options: CarouselOptions(
-          height: 250.0,
+          height: 220.0,
           autoPlay: true,
           enlargeCenterPage: true,
         ),
         items: beritaList.map((item) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(
-                    item.imgUrl,
-                    fit: BoxFit.scaleDown,
-                    width: MediaQuery.sizeOf(context).width,
-                  ),
-                ),
-                const Stack(
-                  children: [
-                    Opacity(opacity: 0.2),
-                    Positioned(
-                      top: 40,
-                      left: 20,
-                      child: Text(
-                        "Selamat Datang di BPSDM Mobile",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.network(
+                          item.imgUrl,
+                          fit: BoxFit.scaleDown,
+                          width: MediaQuery.sizeOf(context).width,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      Positioned(
+                        top: 10,
+                        left: 10,
+                        child: SizedBox(
+                          // height: 40,
+                          width: 0.65 * MediaQuery.of(context).size.width,
+                          // width: double.infinity,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: Text(
+                                ellipsisText(item.judul, 50),
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           );
         }).toList(),

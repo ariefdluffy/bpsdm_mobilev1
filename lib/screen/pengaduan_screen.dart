@@ -9,6 +9,8 @@ class PengaduanScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pengaduan'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
       body: Center(
         child: ElevatedButton(

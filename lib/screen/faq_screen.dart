@@ -19,6 +19,8 @@ class FaqScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('FAQ Pelatihan'),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
         ),
         body: Column(
           children: [

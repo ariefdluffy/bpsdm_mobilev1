@@ -6,7 +6,11 @@ class VisiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Visi Misi')),
+      appBar: AppBar(
+        title: const Text('Visi Misi'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
