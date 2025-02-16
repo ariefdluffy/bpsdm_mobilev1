@@ -36,13 +36,6 @@ class MainApp extends ConsumerWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
-      // onGenerateRoute: (settings) {
-      //   if (settings.name == '/pengaduan') {
-      //     _launchURL('https://www.lapor.go.id/');
-      //     return null; // Tidak perlu halaman baru
-      //   }
-      //   return null;
-      // },
       routes: {
         // "/": (context) => const Dashboard(),
         "/jadwal": (context) => const JadwalScreen(),

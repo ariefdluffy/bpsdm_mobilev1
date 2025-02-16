@@ -13,7 +13,7 @@ class ApiService {
       "https://sincere-longhaired-evening.glitch.me/api"; // Ganti dengan URL server kamu
 
   Future<List<JadwalModel>> fetchJadwal() async {
-    final response = await http.get(Uri.parse('$baseUrl/jadwal'));
+    final response = await http.get(Uri.parse('$baseUrl/jadwal/filter'));
 
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);

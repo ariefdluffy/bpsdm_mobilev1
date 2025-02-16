@@ -1,5 +1,4 @@
 import 'package:bpsdm_mobilev1/screen/widget/carousel_slider.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -73,7 +72,7 @@ class _DashboardState extends State<Dashboard> {
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: 4,
                     crossAxisSpacing: 8,
                     mainAxisSpacing: 8,
                     childAspectRatio: 1, // Rasio ukuran card

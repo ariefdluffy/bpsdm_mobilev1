@@ -111,7 +111,7 @@ class ModernCard extends StatelessWidget {
                       width: double.infinity,
                       child: Text(
                         subtitle.length > 100
-                            ? '${subtitle.substring(0, 100)}...'
+                            ? '${subtitle.substring(0, 130)}...'
                             : subtitle,
                         style: TextStyle(color: Colors.grey[600]),
                         maxLines: 2,

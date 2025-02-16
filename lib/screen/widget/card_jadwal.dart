@@ -5,6 +5,7 @@ class CardJadwal extends StatelessWidget {
   final String namaPelatihan;
   final String tanggalPelatihan;
   final String jenisPelatihan;
+  final String status;
   final VoidCallback onTap;
 
   const CardJadwal({
@@ -12,6 +13,7 @@ class CardJadwal extends StatelessWidget {
     required this.namaPelatihan,
     required this.tanggalPelatihan,
     required this.jenisPelatihan,
+    required this.status,
     required this.onTap,
   });
 
@@ -117,8 +119,8 @@ class CardJadwal extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        'Tanggal Pelaksanaan: $tanggalPelatihan',
-                        style: TextStyle(color: Colors.grey[600]),
+                        'Status: $status - Tanggal: $tanggalPelatihan',
+                        style: const TextStyle(color: Colors.blueGrey),
                         maxLines: 2,
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
@@ -126,18 +128,23 @@ class CardJadwal extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 5),
-                  ElevatedButton(
-                    onPressed: onTap,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black.withOpacity(0.6),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 8),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: onTap,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black.withOpacity(0.6),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text("Detail",
+                            style: TextStyle(fontSize: 12)),
                       ),
-                    ),
-                    child: const Text("Detail"),
+                    ],
                   ),
                 ],
               ),

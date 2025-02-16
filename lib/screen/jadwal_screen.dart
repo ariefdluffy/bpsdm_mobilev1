@@ -48,6 +48,7 @@ class JadwalScreen extends ConsumerWidget {
                               namaPelatihan: jadwal.namaPelatihan,
                               tanggalPelatihan: jadwal.tanggalPelatihan,
                               jenisPelatihan: jadwal.jenisPelatihan,
+                              status: jadwal.status,
                               onTap: () {
                                 launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
                                     mode: LaunchMode.externalApplication);
