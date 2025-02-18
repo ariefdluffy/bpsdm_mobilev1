@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:bpsdm_mobilev1/model/alumni_model.dart';
 import 'package:bpsdm_mobilev1/model/berita_model.dart';
 import 'package:bpsdm_mobilev1/model/detail_model.dart';
 import 'package:bpsdm_mobilev1/model/jadwal_model.dart';
@@ -36,15 +37,6 @@ class ApiService {
     }
   }
 
-  // Future<DetailModel> fetchDetailBerita(String url) async {
-  //   final response =
-  //       await http.get(Uri.parse('$baseUrl/berita/detail/?url=$url'));
-
-  //   // print('url: ${response.body}');
-  //   if (response.statusCode == 200) {
-  //     final data = json.decode(response.body);
-
-  //     return DetailModel.toJson(data);
   //   } else {
   //     throw Exception("Gagal mengambil detail berita");
   //   }
@@ -68,7 +60,20 @@ class ApiService {
     }
   }
 
-  // Future List<String> imgList = [
+  Future<List<Alumni>> fetchAlumni(String tahun) async {
+    final uri = Uri.parse("$baseUrl/alumni?tahun=$tahun");
 
-  // ];
+    try {
+      final response = await http.get(uri);
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+        final List<dynamic> data = jsonResponse['data'];
+        return data.map((item) => Alumni.fromJson(item)).toList();
+      } else {
+        throw Exception("Gagal mengambil data alumni");
+      }
+    } catch (e) {
+      throw Exception("$e");
+    }
+  }
 }

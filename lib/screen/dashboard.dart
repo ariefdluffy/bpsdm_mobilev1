@@ -52,6 +52,13 @@ class _DashboardState extends State<Dashboard> {
       "route": "/visimisi",
       "color": Colors.blueGrey
     },
+    {
+      "title": "Alumni",
+      "subtitle": "Pelatihan",
+      "icon": Icons.local_attraction_rounded,
+      "route": "/alumni",
+      "color": Colors.pink
+    },
   ];
 
   @override

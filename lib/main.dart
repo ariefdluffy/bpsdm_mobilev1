@@ -1,7 +1,7 @@
 import 'package:bpsdm_mobilev1/main_screen.dart';
+import 'package:bpsdm_mobilev1/screen/alumni_screen.dart';
 import 'package:bpsdm_mobilev1/screen/pengaduan_screen.dart';
 import 'package:bpsdm_mobilev1/screen/struktur_org.dart';
-import 'package:bpsdm_mobilev1/screen/struktur_orgv2.dart';
 import 'package:bpsdm_mobilev1/screen/visi_screen.dart';
 import 'package:bpsdm_mobilev1/services/api_supabase.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bpsdm_mobilev1/screen/berita_screen.dart';
 import 'package:bpsdm_mobilev1/screen/faq_screen.dart';
 import 'package:bpsdm_mobilev1/screen/jadwal_screen.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,16 +20,16 @@ void main() async {
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
-  void _launchURL() async {
-    final Uri url = Uri.parse("https://www.lapor.go.id/");
-    // ignore: deprecated_member_use
-    if (await canLaunchUrl(url)) {
-      // ignore: deprecated_member_use
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      throw 'Could not launch \$url';
-    }
-  }
+  // void _launchURL() async {
+  //   final Uri url = Uri.parse("https://www.lapor.go.id/");
+  //   // ignore: deprecated_member_use
+  //   if (await canLaunchUrl(url)) {
+  //     // ignore: deprecated_member_use
+  //     await launchUrl(url, mode: LaunchMode.externalApplication);
+  //   } else {
+  //     throw 'Could not launch \$url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,6 +44,7 @@ class MainApp extends ConsumerWidget {
         "/organisasi": (context) => const StrukturOrg(),
         "/pengaduan": (context) => const PengaduanScreen(),
         "/visimisi": (context) => const VisiScreen(),
+        "/alumni": (context) => const AlumniScreen(),
       },
       home: Scaffold(
         backgroundColor: Colors.white,

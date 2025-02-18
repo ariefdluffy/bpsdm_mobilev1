@@ -1,3 +1,4 @@
+import 'package:bpsdm_mobilev1/model/alumni_model.dart';
 import 'package:bpsdm_mobilev1/model/berita_model.dart';
 import 'package:bpsdm_mobilev1/model/detail_model.dart';
 import 'package:bpsdm_mobilev1/model/faq_model.dart';
@@ -9,12 +10,6 @@ import '../services/api_service.dart';
 
 // Inisialisasi API Service
 final apiServiceProvider = Provider<ApiService>((ref) => ApiService());
-
-// Provider untuk Jadwal
-// final jadwalProvider = FutureProvider((ref) {
-//   final apiService = ref.watch(apiServiceProvider);
-//   return apiService.fetchJadwal();
-// });
 
 final jadwalProvider = FutureProvider<List<JadwalModel>>((ref) {
   final apiService = ref.watch(apiServiceProvider);
@@ -58,6 +53,45 @@ final textEditingControllerProvider = Provider<TextEditingController>((ref) {
 final screenSizeProvider = StateProvider<ScreenSize>((ref) {
   return ScreenSize.mobile; // Default Mobile
 });
+
+final alumniProvider =
+    StateNotifierProvider<AlumniNotifier, AsyncValue<List<Alumni>>>((ref) {
+  final apiService = ref.read(apiServiceProvider);
+  return AlumniNotifier(apiService);
+});
+
+class AlumniNotifier extends StateNotifier<AsyncValue<List<Alumni>>> {
+  final ApiService apiService;
+  List<Alumni> _allAlumni = []; // Menyimpan data asli sebelum difilter
+
+  AlumniNotifier(this.apiService) : super(const AsyncValue.data([]));
+
+  Future<void> fetchAlumni(String tahun) async {
+    state = const AsyncValue.loading();
+
+    try {
+      final alumniList = await apiService.fetchAlumni(tahun);
+      _allAlumni = alumniList; // Simpan semua data alumni
+      state = AsyncValue.data(alumniList);
+      // print(alumniList[0].namaPelatihan);
+    } catch (e) {
+      state = AsyncValue.error(e.toString(), StackTrace.current);
+    }
+  }
+
+  // Filter alumni berdasarkan pencarian
+  void searchAlumni(String query) {
+    if (query.isEmpty) {
+      state = AsyncValue.data(_allAlumni); // Tampilkan semua jika kosong
+    } else {
+      final filtered = _allAlumni
+          .where((alumni) =>
+              alumni.namaPeserta.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      state = AsyncValue.data(filtered);
+    }
+  }
+}
 
 /// Enum untuk menentukan tipe layar
 enum ScreenSize { mobile, desktop }
