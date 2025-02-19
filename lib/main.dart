@@ -14,7 +14,10 @@ import 'package:bpsdm_mobilev1/screen/jadwal_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SupabaseConfig.initialize();
-  runApp(const ProviderScope(child: MainApp()));
+
+  runApp(
+    const ProviderScope(child: MainApp()),
+  );
 }
 
 class MainApp extends ConsumerWidget {

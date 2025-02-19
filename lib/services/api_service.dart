@@ -60,11 +60,16 @@ class ApiService {
     }
   }
 
-  Future<List<Alumni>> fetchAlumni(String tahun) async {
-    final uri = Uri.parse("$baseUrl/alumni?tahun=$tahun");
+  Future<List<Alumni>> fetchAlumni(String tahun, String kodeJenis) async {
+    final uri = Uri.parse("$baseUrl/alumni");
 
     try {
-      final response = await http.get(uri);
+      final response = await http.post(
+        uri,
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: {"tahun": tahun, "kodeJenis": kodeJenis},
+      );
+
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
         final List<dynamic> data = jsonResponse['data'];

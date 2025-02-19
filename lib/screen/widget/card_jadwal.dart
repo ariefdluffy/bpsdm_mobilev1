@@ -106,26 +106,28 @@ class CardJadwal extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        ellipsisText(jenisPelatihan, 110),
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                        // overflow: TextOverflow.ellipsis,
-                        // maxLines: 2,
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Status: $status - Tanggal: $tanggalPelatihan',
-                        style: const TextStyle(color: Colors.blueGrey),
-                        maxLines: 2,
-                        textAlign: TextAlign.left,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          ellipsisText(jenisPelatihan, 110),
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                          // overflow: TextOverflow.ellipsis,
+                          // maxLines: 2,
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          'Status: $status - $tanggalPelatihan',
+                          style: const TextStyle(color: Colors.blueGrey),
+                          maxLines: 2,
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 5),
                   Column(

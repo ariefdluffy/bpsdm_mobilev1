@@ -66,11 +66,11 @@ class AlumniNotifier extends StateNotifier<AsyncValue<List<Alumni>>> {
 
   AlumniNotifier(this.apiService) : super(const AsyncValue.data([]));
 
-  Future<void> fetchAlumni(String tahun) async {
+  Future<void> fetchAlumni(String tahun, String kodeJenis) async {
     state = const AsyncValue.loading();
 
     try {
-      final alumniList = await apiService.fetchAlumni(tahun);
+      final alumniList = await apiService.fetchAlumni(tahun, kodeJenis);
       _allAlumni = alumniList; // Simpan semua data alumni
       state = AsyncValue.data(alumniList);
       // print(alumniList[0].namaPelatihan);
