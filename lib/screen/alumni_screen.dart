@@ -1,9 +1,10 @@
+import 'package:bpsdm_mobilev1/model/alumni_model.dart';
 import 'package:bpsdm_mobilev1/providers/api_provider.dart';
+import 'package:bpsdm_mobilev1/screen/widget/detail_peserta_dialog.dart';
 import 'package:bpsdm_mobilev1/screen/widget/dropdown_jenis.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
@@ -11,6 +12,7 @@ class AlumniScreen extends ConsumerStatefulWidget {
   const AlumniScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _AlumniScreenState createState() => _AlumniScreenState();
 }
 
@@ -32,9 +34,14 @@ String formatTanggal(String input) {
     String formattedStart =
         DateFormat("d MMMM yyyy", "id_ID").format(startDate);
     String formattedEnd = DateFormat("d MMMM yyyy", "id_ID").format(endDate);
-
+    // print('return: $formattedStart');
+    if (formattedStart == formattedEnd) {
+      return formattedStart;
+    } else {
+      return "$formattedStart - $formattedEnd";
+    }
     // print('return: formattedStart');
-    return "$formattedStart - $formattedEnd";
+    // return "$formattedStart - $formattedEnd";
   } catch (e) {
     return "Format tidak valid";
   }
@@ -62,125 +69,145 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
   // final List<String> pelatihanList = ["Semua", "Orientasi", "Manajerial"];
   final TextEditingController _searchController = TextEditingController();
 
+  void showDetailDialogNew(BuildContext context, Alumni alumni) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      backgroundColor: Colors.white,
+      builder: (context) {
+        return DetailPesertaDialog(
+          namaPeserta: alumni.namaPeserta,
+          nip: alumni.nip ?? "",
+          instansiPeserta: alumni.instansiPeserta,
+          namaPelatihan: alumni.namaPelatihan,
+          tanggalPelatihan: formatTanggal(alumni.tanggalPelatihan),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final alumniState = ref.watch(alumniProvider);
 
-    void showDetailDialog(
-      BuildContext context,
-      String namaPeserta,
-      String? nip,
-      String instansiPeserta,
-      String namaPelatihan,
-      String tanggalPelatihan,
-    ) {
-      showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.white,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        // barrierDismissible:
-        //     false, // User tidak bisa menutup dialog dengan klik luar
-        builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.all(20),
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 10),
-                  // Icon Profil
-                  const CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.blueAccent,
-                    child: Icon(Icons.person, size: 50, color: Colors.white),
-                  ),
-                  const SizedBox(height: 10),
+    // void showDetailDialog(
+    //   BuildContext context,
+    //   String namaPeserta,
+    //   String? nip,
+    //   String instansiPeserta,
+    //   String namaPelatihan,
+    //   String tanggalPelatihan,
+    // ) {
+    //   showModalBottomSheet(
+    //     context: context,
+    //     backgroundColor: Colors.white,
+    //     isScrollControlled: true,
+    //     shape: const RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    //     ),
+    //     // barrierDismissible:
+    //     //     false, // User tidak bisa menutup dialog dengan klik luar
+    //     builder: (context) {
+    //       return Padding(
+    //         padding: const EdgeInsets.all(20),
+    //         child: Container(
+    //           color: Colors.white,
+    //           child: Column(
+    //             mainAxisSize: MainAxisSize.min,
+    //             children: [
+    //               const SizedBox(height: 10),
+    //               // Icon Profil
+    //               const CircleAvatar(
+    //                 radius: 40,
+    //                 backgroundColor: Colors.blueAccent,
+    //                 child: Icon(Icons.person, size: 50, color: Colors.white),
+    //               ),
+    //               const SizedBox(height: 10),
 
-                  // Nama & NIP
-                  Text(
-                    "$namaPeserta - $nip",
-                    style: GoogleFonts.poppins(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 10),
-                  const Divider(),
-                  const SizedBox(height: 10),
-                  // Instansi
-                  Row(
-                    children: [
-                      const Icon(Icons.business, color: Colors.blueAccent),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          instansiPeserta,
-                          style: GoogleFonts.poppins(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
+    //               // Nama & NIP
+    //               Text(
+    //                 "$namaPeserta - $nip",
+    //                 style: GoogleFonts.poppins(
+    //                   fontSize: 18,
+    //                   fontWeight: FontWeight.bold,
+    //                 ),
+    //                 textAlign: TextAlign.center,
+    //               ),
+    //               const SizedBox(height: 10),
+    //               const Divider(),
+    //               const SizedBox(height: 10),
+    //               // Instansi
+    //               Row(
+    //                 children: [
+    //                   const Icon(Icons.business, color: Colors.blueAccent),
+    //                   const SizedBox(width: 10),
+    //                   Expanded(
+    //                     child: Text(
+    //                       instansiPeserta,
+    //                       style: GoogleFonts.poppins(fontSize: 14),
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //               const SizedBox(height: 10),
 
-                  // Nama Pelatihan
-                  Row(
-                    children: [
-                      const Icon(Icons.school, color: Colors.green),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          namaPelatihan,
-                          style: GoogleFonts.poppins(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
+    //               // Nama Pelatihan
+    //               Row(
+    //                 children: [
+    //                   const Icon(Icons.school, color: Colors.green),
+    //                   const SizedBox(width: 10),
+    //                   Expanded(
+    //                     child: Text(
+    //                       namaPelatihan,
+    //                       style: GoogleFonts.poppins(fontSize: 14),
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //               const SizedBox(height: 20),
 
-                  // Tanggal Pelatihan
-                  Row(
-                    children: [
-                      const Icon(Icons.date_range, color: Colors.orange),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: Text(
-                          tanggalPelatihan,
-                          style: GoogleFonts.poppins(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
+    //               // Tanggal Pelatihan
+    //               Row(
+    //                 children: [
+    //                   const Icon(Icons.date_range, color: Colors.orange),
+    //                   const SizedBox(width: 20),
+    //                   Expanded(
+    //                     child: Text(
+    //                       tanggalPelatihan,
+    //                       style: GoogleFonts.poppins(fontSize: 14),
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //               const SizedBox(height: 20),
 
-                  // Tombol Tutup
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.close),
-                    label: const Text("Tutup"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 10),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      );
-    }
+    //               // Tombol Tutup
+    //               ElevatedButton.icon(
+    //                 onPressed: () {
+    //                   Navigator.pop(context);
+    //                 },
+    //                 icon: const Icon(Icons.close),
+    //                 label: const Text("Tutup"),
+    //                 style: ElevatedButton.styleFrom(
+    //                   backgroundColor: Colors.redAccent,
+    //                   foregroundColor: Colors.white,
+    //                   shape: RoundedRectangleBorder(
+    //                     borderRadius: BorderRadius.circular(10),
+    //                   ),
+    //                   padding: const EdgeInsets.symmetric(
+    //                       vertical: 12, horizontal: 10),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       );
+    //     },
+    //   );
+    // }
 
     return Scaffold(
       appBar: AppBar(
@@ -233,7 +260,7 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                           onPressed: () {
                             ref
                                 .read(alumniProvider.notifier)
-                                .fetchAlumni(selectedYear, selectedKodeJenis!);
+                                .fetchAlumni(selectedYear, selectedKodeJenis);
                           },
                           child: const Text("Cari"),
                         ),
@@ -273,21 +300,6 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                     ),
                   ),
 
-                  // Dropdown Jenis
-                  // DropdownButtonFormField<String>(
-                  //   value: selectedPelatihan,
-                  //   items: pelatihanList.map((pelatihan) {
-                  //     return DropdownMenuItem(
-                  //         value: pelatihan, child: Text(pelatihan));
-                  //   }).toList(),
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       selectedPelatihan = value;
-                  //     });
-                  //   },
-                  //   decoration: const InputDecoration(labelText: "Pilih Pelatihan"),
-                  // ),
-
                   const SizedBox(height: 20),
 
                   Expanded(
@@ -317,58 +329,15 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                                   //   style: const TextStyle(fontSize: 12),
                                   // ),
                                   onTap: () {
-                                    showDetailDialog(
-                                      context,
-                                      alumni.namaPeserta,
-                                      alumni.nip ?? "",
-                                      alumni.namaPelatihan,
-                                      alumni.instansiPeserta,
-                                      formatTanggal(alumni.tanggalPelatihan),
-                                    );
-
-                                    // Menampilkan detail dalam SnackBar
-                                    // ScaffoldMessenger.of(context).showSnackBar(
-                                    //   SnackBar(
-                                    //     // backgroundColor: Colors.grey,
-                                    //     content: Column(
-                                    //       mainAxisAlignment: MainAxisAlignment.start,
-                                    //       children: [
-                                    //         Text(
-                                    //           "${alumni.namaPeserta} - ${alumni.nip}" ??
-                                    //               "-",
-                                    //           textAlign: TextAlign.left,
-                                    //           style: const TextStyle(
-                                    //               fontSize: 16,
-                                    //               fontWeight: FontWeight.bold),
-                                    //         ),
-                                    //         const Divider(),
-                                    //         Text(
-                                    //           alumni.instansiPeserta,
-                                    //           textAlign: TextAlign.justify,
-                                    //         ),
-                                    //         const SizedBox(
-                                    //           height: 5,
-                                    //         ),
-                                    //         const Divider(),
-                                    //         Text(
-                                    //           "${alumni.namaPelatihan}\n",
-                                    //           textAlign: TextAlign.justify,
-                                    //         ),
-                                    //         Text(
-                                    //           "Tanggal Pelatihan: ${alumni.tanggalPelatihan}",
-                                    //           textAlign: TextAlign.left,
-                                    //         )
-                                    //       ],
-                                    //     ),
-                                    //     // duration: const Duration(seconds: 60),
-                                    //     // behavior: SnackBarBehavior.floating,
-                                    //     duration: const Duration(days: 1),
-                                    //     action: SnackBarAction(
-                                    //       label: "Tutup",
-                                    //       onPressed: () {},
-                                    //     ),
-                                    //   ),
+                                    // showDetailDialog(
+                                    //   context,
+                                    //   alumni.namaPeserta,
+                                    //   alumni.nip ?? "",
+                                    //   alumni.namaPelatihan,
+                                    //   alumni.instansiPeserta,
+                                    //   formatTanggal(alumni.tanggalPelatihan),
                                     // );
+                                    showDetailDialogNew(context, alumni);
                                   },
                                 );
                               },

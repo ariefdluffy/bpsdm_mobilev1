@@ -1,7 +1,7 @@
 name: bpsdm_mobilev1
 description: "BPSDM Mobile"
 publish_to: "none"
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: ^3.5.3
@@ -13,6 +13,7 @@ dependencies:
   flutter_html: ^3.0.0-beta.2
   flutter_launcher_icons: ^0.14.3
   flutter_riverpod: ^2.6.1
+  font_awesome_flutter: ^10.8.0
   google_fonts: ^6.2.1
   http: ^1.3.0
   intl: ^0.20.2
@@ -37,6 +38,8 @@ assets:
   - assets
   - assets/banner/
   - assets/image/
+  - assets/bpsdm_logo.png
+  - assets/logo.png
 
 flutter_launcher_icons:
   android: true

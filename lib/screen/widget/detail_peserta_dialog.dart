@@ -37,9 +37,12 @@ class DetailPesertaDialog extends StatelessWidget {
       String formattedStart =
           DateFormat("d MMMM yyyy", "id_ID").format(startDate);
       String formattedEnd = DateFormat("d MMMM yyyy", "id_ID").format(endDate);
-
-      // print('return: formattedStart');
-      return "$formattedStart - $formattedEnd";
+      print('return: $formattedStart');
+      if (formattedStart == formattedEnd) {
+        return formattedStart;
+      } else {
+        return "$formattedStart - $formattedEnd";
+      }
     } catch (e) {
       return "Format tidak valid";
     }

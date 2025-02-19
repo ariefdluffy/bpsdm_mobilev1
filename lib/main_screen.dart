@@ -1,9 +1,11 @@
 // import 'package:flutter/foundation.dart';
+
+import 'package:bpsdm_mobilev1/screen/about_screen.dart';
 import 'package:bpsdm_mobilev1/screen/dashboard.dart';
-import 'package:bpsdm_mobilev1/screen/faq_screen.dart';
 import 'package:bpsdm_mobilev1/screen/jadwal_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -19,7 +21,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     const Dashboard(),
     const JadwalScreen(),
     // const BeritaScreen(),
-    const FaqScreen(),
+    const AboutPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -43,7 +45,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               icon: Icon(Icons.calendar_today), label: "Jadwal"),
           // BottomNavigationBarItem(icon: Icon(Icons.article), label: "Berita"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.question_answer), label: "FaQ"),
+              icon: Icon(FontAwesomeIcons.user), label: "About"),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
