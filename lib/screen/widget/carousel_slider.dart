@@ -25,69 +25,68 @@ class ImageSlider extends ConsumerWidget {
           return beritaAsyncValue.when(
             data: (beritaList) => CarouselSlider(
               options: CarouselOptions(
-                height: 220.0,
+                viewportFraction: screenWidth > 600 ? 0.5 : 0.8,
+                height: 240.0,
                 autoPlay: true,
                 aspectRatio: 16 / 9,
                 enlargeCenterPage: true,
               ),
               items: beritaList.map((item) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // Text("Lebar layar: $screenWidth"),
-                        Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.network(
-                                item.imgUrl,
-                                fit: BoxFit.scaleDown,
-                                width: screenWidth * 0.9,
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return const Center(
-                                      child: CircularProgressIndicator());
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(Icons.error,
-                                      size: 150, color: Colors.red);
-                                },
-                              ),
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Text("Lebar layar: $screenWidth"),
+                      Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            // clipBehavior: Clip.hardEdge,
+                            child: Image.network(
+                              item.imgUrl,
+                              fit: BoxFit.scaleDown,
+                              width: screenWidth * 0.9,
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              },
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(Icons.error,
+                                    size: 150, color: Colors.red);
+                              },
                             ),
-                            Positioned(
-                              top: 10,
-                              left: 10,
-                              child: SizedBox(
-                                // height: 40,
-                                width: 0.65 * MediaQuery.of(context).size.width,
-                                // width: double.infinity,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.7),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Text(
-                                      ellipsisText(item.judul, 80),
-                                      style: const TextStyle(
-                                        color: Colors.black87,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                          ),
+                          Positioned(
+                            top: 10,
+                            left: 10,
+                            child: SizedBox(
+                              // height: 40,
+                              width: 0.65 * MediaQuery.of(context).size.width,
+                              // width: double.infinity,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.7),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Text(
+                                    ellipsisText(item.judul, 80),
+                                    style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 );
               }).toList(),

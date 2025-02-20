@@ -33,12 +33,13 @@ class ModernCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.vertical(
               top: Radius.circular(15),
+              bottom: Radius.circular(15),
             ),
             child: Image.network(
               imageUrl,
               height: 260,
               width: double.infinity,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
                 return const Center(child: CircularProgressIndicator());
@@ -56,11 +57,11 @@ class ModernCard extends StatelessWidget {
           // Tombol Detail di atas gambar
           Positioned(
             top: 10,
-            right: 10,
+            right: 15,
             child: ElevatedButton(
               onPressed: onTap,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black.withOpacity(0.7),
+                backgroundColor: Colors.black.withOpacity(0.5),
                 foregroundColor: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -90,12 +91,12 @@ class ModernCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 18.0),
+                    padding: const EdgeInsets.only(right: 10.0),
                     child: SizedBox(
                       width: double.infinity,
                       child: Text(
-                        title.length > 90
-                            ? '${title.substring(0, 90)}...'
+                        title.length > 50
+                            ? '${title.substring(0, 50)}...'
                             : title,
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
@@ -106,14 +107,14 @@ class ModernCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
+                    padding: const EdgeInsets.only(right: 10.0),
                     child: SizedBox(
                       width: double.infinity,
                       child: Text(
                         subtitle.length > 100
                             ? '${subtitle.substring(0, 130)}...'
                             : subtitle,
-                        style: TextStyle(color: Colors.grey[600]),
+                        style: TextStyle(color: Colors.grey[700]),
                         maxLines: 2,
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,

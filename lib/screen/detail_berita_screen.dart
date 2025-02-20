@@ -61,9 +61,36 @@ class DetailBerita extends ConsumerWidget {
             ),
           );
         },
-        error: (err, stack) => Center(child: Text("Error: $err")),
         loading: () => const Center(
           child: CircularProgressIndicator(),
+        ),
+        error: (err, stack) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error, color: Colors.red, size: 50),
+              const SizedBox(height: 10),
+              const Text(
+                "Gagal mengambil data. Silakan coba lagi.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  ref.invalidate(detailBeritaProvider); // Refresh data
+                },
+                icon: const Icon(Icons.refresh),
+                label: const Text("Coba Lagi"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  foregroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

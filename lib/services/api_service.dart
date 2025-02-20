@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:bpsdm_mobilev1/model/alumni_model.dart';
 import 'package:bpsdm_mobilev1/model/berita_model.dart';
 import 'package:bpsdm_mobilev1/model/detail_model.dart';
@@ -11,7 +12,9 @@ class ApiService {
   // final String baseUrl =
   //     "http://11.11.11.19:5000/api"; // Ganti dengan URL server kamu
   final String baseUrl =
-      "https://sincere-longhaired-evening.glitch.me/api"; // Ganti dengan URL server kamu
+      "https://backend-scraping-b3mx.onrender.com/api"; // Ganti dengan URL server kamu
+  // final String baseUrl =
+  //     "https://sincere-longhaired-evening.glitch.me/api"; // Ganti dengan URL server kamu
 
   Future<List<JadwalModel>> fetchJadwal() async {
     final response = await http.get(Uri.parse('$baseUrl/jadwal/filter'));
@@ -77,8 +80,10 @@ class ApiService {
       } else {
         throw Exception("Gagal mengambil data alumni");
       }
-    } catch (e) {
-      throw Exception("$e");
+    } catch (e, stackTrace) {
+      log("Error get Alumni: $e");
+      log("StackTrace get Alumni: $stackTrace"); // Untuk debugging
+      throw Exception("Gagal mengambil data alumni");
     }
   }
 }
