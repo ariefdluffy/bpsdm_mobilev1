@@ -12,13 +12,6 @@ class JadwalScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final jadwalAsyncValue = ref.watch(jadwalProvider);
-
-    String ellipsisText(String text, int maxLength) {
-      return (text.length > maxLength)
-          ? "${text.substring(0, maxLength)}..."
-          : text;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Jadwal Pelatihan"),
@@ -119,8 +112,11 @@ class JadwalScreen extends ConsumerWidget {
                         icon: const Icon(Icons.refresh),
                         label: const Text("Coba Lagi"),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueAccent,
-                          foregroundColor: Colors.white,
+                          backgroundColor:
+                              Colors.teal, // Warna hijau kebiruan segar
+                          foregroundColor:
+                              Colors.white, // Teks putih yang kontras
+
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 20),
                         ),

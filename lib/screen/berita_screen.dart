@@ -1,5 +1,6 @@
 import 'package:bpsdm_mobilev1/screen/detail_berita_screen.dart';
 import 'package:bpsdm_mobilev1/screen/widget/card.dart';
+import 'package:bpsdm_mobilev1/screen/widget/card_berita.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box_err.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +30,25 @@ class BeritaScreen extends ConsumerWidget {
                       itemCount: beritaList.length,
                       itemBuilder: (context, index) {
                         final item = beritaList[index];
-                        return ModernCard(
+                        // return ModernCard(
+                        //   title: item.judul,
+                        //   subtitle: item.isiBerita,
+                        //   imageUrl: item.imgUrl,
+                        //   onTap: () {
+                        //     ref.read(linkBeritaProvider.notifier).state =
+                        //         item.linkBerita;
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (centext) => const DetailBerita(),
+                        //       ),
+                        //     );
+                        //   },
+                        // );
+                        return NewsCard(
+                          imageUrl: item.imgUrl,
                           title: item.judul,
                           subtitle: item.isiBerita,
-                          imageUrl: item.imgUrl,
                           onTap: () {
                             ref.read(linkBeritaProvider.notifier).state =
                                 item.linkBerita;
@@ -44,45 +60,6 @@ class BeritaScreen extends ConsumerWidget {
                             );
                           },
                         );
-                        // return ListTile(
-                        //   title: Text(
-                        //     item.judul,
-                        //     style: const TextStyle(
-                        //         fontSize: 16, fontWeight: FontWeight.w500),
-                        //   ),
-                        //   subtitle: Text(
-                        //     item.isiBerita,
-                        //     maxLines: 2,
-                        //     overflow: TextOverflow.ellipsis,
-                        //     style: const TextStyle(fontSize: 14),
-                        //   ),
-                        //   trailing: SizedBox(
-                        //     height: 75,
-                        //     width: 75,
-                        //     child: Image.network(
-                        //       item.imgUrl,
-                        //       loadingBuilder: (context, child, loadingProgress) {
-                        //         if (loadingProgress == null) return child;
-                        //         return const Center(child: CircularProgressIndicator());
-                        //       },
-                        //       errorBuilder: (context, error, stackTrace) {
-                        //         return const Icon(Icons.error,
-                        //             size: 50, color: Colors.red);
-                        //       },
-                        //     ),
-                        //   ),
-                        //   onTap: () {
-                        //     ref.read(linkBeritaProvider.notifier).state = item.linkBerita;
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (centext) => const DetailBerita(),
-                        //       ),
-                        //     );
-                        //     // print('link: ${item.imgUrl}');
-                        //     // print('link berita: ${beritaList[index].linkBerita}');
-                        //   },
-                        // );
                       },
                     ),
                     error: (err, stack) {

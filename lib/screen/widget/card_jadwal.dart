@@ -46,7 +46,7 @@ class CardJadwal extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       Color.fromARGB(255, 230, 234, 236),
-                      Color.fromARGB(255, 142, 153, 201)
+                      Color.fromARGB(255, 167, 148, 180)
                     ], // Warna gradient
                     begin: Alignment.topLeft, // Mulai dari kiri atas
                     end: Alignment.bottomRight, // Berakhir di kanan bawah

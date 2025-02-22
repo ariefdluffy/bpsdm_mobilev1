@@ -321,7 +321,7 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                                           fontSize: 14)),
                                   // trailing: Text(alumni.nip ?? ""),
                                   subtitle: Text(
-                                    ellipsisText(alumni.namaPelatihan, 100),
+                                    ellipsisText(alumni.namaPelatihan, 150),
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                   // subtitle: Text(
@@ -329,14 +329,6 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                                   //   style: const TextStyle(fontSize: 12),
                                   // ),
                                   onTap: () {
-                                    // showDetailDialog(
-                                    //   context,
-                                    //   alumni.namaPeserta,
-                                    //   alumni.nip ?? "",
-                                    //   alumni.namaPelatihan,
-                                    //   alumni.instansiPeserta,
-                                    //   formatTanggal(alumni.tanggalPelatihan),
-                                    // );
                                     showDetailDialogNew(context, alumni);
                                   },
                                 );
