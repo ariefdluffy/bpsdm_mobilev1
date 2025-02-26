@@ -69,7 +69,7 @@ class BeritaScreen extends ConsumerWidget {
                     },
                     loading: () => Column(
                       children: List.generate(
-                        1,
+                        7,
                         (index) => const ShimmerBox(),
                       ),
                     ),

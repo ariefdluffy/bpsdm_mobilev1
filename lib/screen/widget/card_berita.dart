@@ -26,7 +26,7 @@ class NewsCard extends StatelessWidget {
     return Card(
       elevation: 4, // Efek shadow
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
       child: InkWell(
         onTap: () {
           onTap();
@@ -75,7 +75,7 @@ class NewsCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            ellipsisText(subtitle, 70),
+                            ellipsisText(subtitle, 90),
                             style: const TextStyle(
                               fontSize: 10,
                               color: Colors.grey,
