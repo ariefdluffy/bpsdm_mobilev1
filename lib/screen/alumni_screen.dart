@@ -93,122 +93,6 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
   Widget build(BuildContext context) {
     final alumniState = ref.watch(alumniProvider);
 
-    // void showDetailDialog(
-    //   BuildContext context,
-    //   String namaPeserta,
-    //   String? nip,
-    //   String instansiPeserta,
-    //   String namaPelatihan,
-    //   String tanggalPelatihan,
-    // ) {
-    //   showModalBottomSheet(
-    //     context: context,
-    //     backgroundColor: Colors.white,
-    //     isScrollControlled: true,
-    //     shape: const RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    //     ),
-    //     // barrierDismissible:
-    //     //     false, // User tidak bisa menutup dialog dengan klik luar
-    //     builder: (context) {
-    //       return Padding(
-    //         padding: const EdgeInsets.all(20),
-    //         child: Container(
-    //           color: Colors.white,
-    //           child: Column(
-    //             mainAxisSize: MainAxisSize.min,
-    //             children: [
-    //               const SizedBox(height: 10),
-    //               // Icon Profil
-    //               const CircleAvatar(
-    //                 radius: 40,
-    //                 backgroundColor: Colors.blueAccent,
-    //                 child: Icon(Icons.person, size: 50, color: Colors.white),
-    //               ),
-    //               const SizedBox(height: 10),
-
-    //               // Nama & NIP
-    //               Text(
-    //                 "$namaPeserta - $nip",
-    //                 style: GoogleFonts.poppins(
-    //                   fontSize: 18,
-    //                   fontWeight: FontWeight.bold,
-    //                 ),
-    //                 textAlign: TextAlign.center,
-    //               ),
-    //               const SizedBox(height: 10),
-    //               const Divider(),
-    //               const SizedBox(height: 10),
-    //               // Instansi
-    //               Row(
-    //                 children: [
-    //                   const Icon(Icons.business, color: Colors.blueAccent),
-    //                   const SizedBox(width: 10),
-    //                   Expanded(
-    //                     child: Text(
-    //                       instansiPeserta,
-    //                       style: GoogleFonts.poppins(fontSize: 14),
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //               const SizedBox(height: 10),
-
-    //               // Nama Pelatihan
-    //               Row(
-    //                 children: [
-    //                   const Icon(Icons.school, color: Colors.green),
-    //                   const SizedBox(width: 10),
-    //                   Expanded(
-    //                     child: Text(
-    //                       namaPelatihan,
-    //                       style: GoogleFonts.poppins(fontSize: 14),
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //               const SizedBox(height: 20),
-
-    //               // Tanggal Pelatihan
-    //               Row(
-    //                 children: [
-    //                   const Icon(Icons.date_range, color: Colors.orange),
-    //                   const SizedBox(width: 20),
-    //                   Expanded(
-    //                     child: Text(
-    //                       tanggalPelatihan,
-    //                       style: GoogleFonts.poppins(fontSize: 14),
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //               const SizedBox(height: 20),
-
-    //               // Tombol Tutup
-    //               ElevatedButton.icon(
-    //                 onPressed: () {
-    //                   Navigator.pop(context);
-    //                 },
-    //                 icon: const Icon(Icons.close),
-    //                 label: const Text("Tutup"),
-    //                 style: ElevatedButton.styleFrom(
-    //                   backgroundColor: Colors.redAccent,
-    //                   foregroundColor: Colors.white,
-    //                   shape: RoundedRectangleBorder(
-    //                     borderRadius: BorderRadius.circular(10),
-    //                   ),
-    //                   padding: const EdgeInsets.symmetric(
-    //                       vertical: 12, horizontal: 10),
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
-    // }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Data Alumni"),
@@ -221,11 +105,11 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
           return SizedBox(
             width: maxWidth,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   // Dropdown Tahun
                   DropdownJenis(
                     selectedKodeJenis: selectedKodeJenis,
@@ -250,8 +134,24 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                               selectedYear = value!;
                             });
                           },
-                          decoration:
-                              const InputDecoration(labelText: "Pilih Tahun"),
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 14),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: const BorderSide(color: Colors.grey),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: const BorderSide(color: Colors.grey),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: const BorderSide(
+                                  color: Colors.blue, width: 2),
+                            ),
+                            labelText: "Pilih Tahun",
+                          ),
                         ),
                       ),
                       Padding(
@@ -267,9 +167,9 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   const Divider(),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   // TextField untuk pencarian nama peserta
                   TextField(
                     controller: _searchController,
@@ -324,10 +224,7 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                                     ellipsisText(alumni.namaPelatihan, 150),
                                     style: const TextStyle(fontSize: 12),
                                   ),
-                                  // subtitle: Text(
-                                  //   "Tgl: ${formatTanggal(alumni.tanggalPelatihan)}",
-                                  //   style: const TextStyle(fontSize: 12),
-                                  // ),
+
                                   onTap: () {
                                     showDetailDialogNew(context, alumni);
                                   },

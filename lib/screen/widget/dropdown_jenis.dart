@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 class DropdownJenis extends StatefulWidget {
@@ -68,17 +69,68 @@ class _DropdownJenisState extends State<DropdownJenis> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
+    //   return DropdownButtonFormField<String>(
+    //     isExpanded: true,
+    //     value: widget.selectedKodeJenis ?? "0", // Pastikan tidak null
+    //     hint: const Text("Pilih Jenis"),
+    //     decoration: InputDecoration(
+    //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+    //       // constraints: const BoxConstraints(
+    //       //   maxHeight: 100, //  Batasi tinggi dropdown
+    //       // ),
+    //       contentPadding:
+    //           const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+    //     ),
+    //     onChanged: widget.onChanged,
+    //     items: jenisList.map((jenis) {
+    //       return DropdownMenuItem<String>(
+    //         value: jenis["value"],
+    //         child: Text(
+    //           jenis["label"] ?? "Tidak Diketahui",
+    //           overflow: TextOverflow.ellipsis,
+    //         ),
+    //       );
+    //     }).toList(),
+    //     menuMaxHeight: 500,
+    //   );
+    // }
+    return DropdownButtonFormField2<String>(
       isExpanded: true,
-      value: widget.selectedKodeJenis ?? "0", // Pastikan tidak null
-      hint: const Text("Pilih Jenis"),
+      value: widget.selectedKodeJenis ?? "0",
       decoration: InputDecoration(
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
-        // constraints: const BoxConstraints(
-        //   maxHeight: 100, //  Batasi tinggi dropdown
-        // ),
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(color: Colors.grey),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(color: Colors.grey),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(color: Colors.blue, width: 2),
+        ),
+        labelText: "Jenis Pelatihan",
+      ),
+      hint: const Text(
+        "Pilih Jenis",
+        style: TextStyle(fontSize: 16, color: Colors.black54),
+      ),
+      dropdownStyleData: DropdownStyleData(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        maxHeight: 400,
       ),
       onChanged: widget.onChanged,
       items: jenisList.map((jenis) {
@@ -87,10 +139,10 @@ class _DropdownJenisState extends State<DropdownJenis> {
           child: Text(
             jenis["label"] ?? "Tidak Diketahui",
             overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 16),
           ),
         );
       }).toList(),
-      menuMaxHeight: 500,
     );
   }
 }

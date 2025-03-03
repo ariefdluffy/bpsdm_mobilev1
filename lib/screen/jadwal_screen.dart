@@ -26,11 +26,23 @@ class JadwalScreen extends ConsumerWidget {
             return SizedBox(
               width: maxWidth,
               child: jadwalAsyncValue.when(
-                data: (List<JadwalModel> jadwalList) => ListView.builder(
-                  itemCount: jadwalList.length,
-                  itemBuilder: (context, index) {
-                    final jadwal = jadwalList[index];
-                    return InkWell(
+                data: (List<JadwalModel> jadwalList) {
+                  // ✅ Jika list kosong, tampilkan pesan
+                  if (jadwalList.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        "Belum ada jadwal",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    );
+                  }
+
+                  return ListView.builder(
+                    itemCount: jadwalList.length,
+                    itemBuilder: (context, index) {
+                      final jadwal = jadwalList[index];
+                      return InkWell(
                         onTap: () {
                           launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
                               mode: LaunchMode.externalApplication);
@@ -38,54 +50,20 @@ class JadwalScreen extends ConsumerWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CardJadwal(
-                              namaPelatihan: jadwal.namaPelatihan,
-                              tanggalPelatihan: jadwal.tanggalPelatihan,
-                              jenisPelatihan: jadwal.jenisPelatihan,
-                              status: jadwal.status,
-                              onTap: () {
-                                launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
-                                    mode: LaunchMode.externalApplication);
-                                // child: Card(
-                                //   child: Column(
-                                //     children: [
-                                //       ListTile(
-                                //         title: Text(
-                                //           ellipsisText(jadwal.namaPelatihan, 60),
-                                //           style: const TextStyle(
-                                //               fontSize: 18, fontWeight: FontWeight.w500),
-                                //         ),
-                                //         subtitle: Text(
-                                //             "Tanggal Pelaksanaan: ${jadwal.tanggalPelatihan}"),
-                                //       ),
-                                //       const Divider(
-                                //         thickness: 1.0,
-                                //         color: Colors.blueGrey,
-                                //       ),
-                                //       Row(
-                                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                //         children: [
-                                //           Expanded(
-                                //             child: Center(
-                                //               child: Text(
-                                //                 ellipsisText(jadwal.jenisPelatihan, 12),
-                                //                 maxLines: 1,
-                                //                 overflow: TextOverflow.ellipsis,
-                                //               ),
-                                //             ),
-                                //           ),
-                                //           Expanded(
-                                //             child: Text('Kuota: ${jadwal.kuota} Peserta'),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //       const SizedBox(height: 8),
-                                //     ],
-                                //   ),
-                                // ),
-                              }),
-                        ));
-                  },
-                ),
+                            namaPelatihan: jadwal.namaPelatihan,
+                            tanggalPelatihan: jadwal.tanggalPelatihan,
+                            jenisPelatihan: jadwal.jenisPelatihan,
+                            status: jadwal.status,
+                            onTap: () {
+                              launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
+                                  mode: LaunchMode.externalApplication);
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
                 loading: () => Column(
                   children: List.generate(
                     5,
@@ -112,11 +90,8 @@ class JadwalScreen extends ConsumerWidget {
                         icon: const Icon(Icons.refresh),
                         label: const Text("Coba Lagi"),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Colors.teal, // Warna hijau kebiruan segar
-                          foregroundColor:
-                              Colors.white, // Teks putih yang kontras
-
+                          backgroundColor: Colors.teal,
+                          foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 20),
                         ),

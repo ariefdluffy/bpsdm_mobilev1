@@ -31,7 +31,7 @@ class StrukturOrg extends StatelessWidget {
         "essiv2": "Jafung Analis Bangkom Ahli Pertama"
       },
       {
-        "ruang": "Bidang Sertifikati Kompetensi dan Pengelolaan Kelembagaan",
+        "ruang": "Bidang Sertifikasi Kompetensi dan Pengelolaan Kelembagaan",
         "essiii": "Siti Djaitun, S.Sos., M.Si.",
         "essiv1": "Dimas Radhitya Anggara, S.E.",
         "essiv2": "Jafung Analis Bangkom Ahli Pertama"
@@ -48,11 +48,11 @@ class StrukturOrg extends StatelessWidget {
         children: [
           const Text(
             'KEPALA BADAN',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
           const Text(
             'Dra. Nina Dewi, M.AP.',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 12),
           ),
           const Divider(),
           Expanded(
@@ -64,17 +64,17 @@ class StrukturOrg extends StatelessWidget {
                 return Card(
                   elevation: 4,
                   margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: ExpansionTile(
                     leading: const Icon(Icons.account_circle_outlined,
-                        size: 45, color: Colors.blue),
+                        size: 35, color: Colors.blue),
                     title: Text(
                       contact["ruang"]!,
                       style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                          fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                     children: [
                       ListTile(
