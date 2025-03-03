@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,7 +28,7 @@ class AboutPage extends StatelessWidget {
               const Text(
                 'BPSDM Provinsi Kaltim',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.blueAccent,
                 ),
@@ -36,7 +37,7 @@ class AboutPage extends StatelessWidget {
               const Text(
                 'Badan Pengembangan Sumber Daya Manusia (BPSDM) Provinsi Kalimantan Timur adalah lembaga yang berfokus pada pengembangan sumber daya aparatur.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 14),
               ),
               const SizedBox(height: 10),
               const Divider(),
@@ -71,7 +72,7 @@ class AboutPage extends StatelessWidget {
                   'mailto:info@bpsdm.kaltimprov.go.id',
                   'info@bpsdm.kaltimprov.go.id'),
               _buildSocialMediaItem(
-                  Icons.verified_sharp, 'Versi Aplikasi', '', '1.0.1'),
+                  Icons.verified_sharp, 'Versi Aplikasi', '', '1.0.2'),
             ],
           ),
         ),
@@ -89,8 +90,14 @@ class AboutPage extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 6),
       child: ListTile(
         leading: Icon(icon, color: Colors.blueAccent),
-        title: Text(title),
-        subtitle: Text(subtitle),
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 14),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: const TextStyle(fontSize: 14),
+        ),
         onTap: () => _launchURL(url),
       ),
     );

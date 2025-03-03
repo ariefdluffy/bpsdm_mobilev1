@@ -162,6 +162,20 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                                 .read(alumniProvider.notifier)
                                 .fetchAlumni(selectedYear, selectedKodeJenis);
                           },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.teal, // Warna tombol
+                            foregroundColor: Colors.white, // Warna teks
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 12),
+                            textStyle: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10), // Border radius tombol
+                            ),
+                            elevation: 4, // Efek shadow
+                            shadowColor: Colors.black45, // Warna shadow
+                          ),
                           child: const Text("Cari"),
                         ),
                       ),

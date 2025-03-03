@@ -9,6 +9,10 @@ import 'package:url_launcher/url_launcher.dart';
 class JadwalScreen extends ConsumerWidget {
   const JadwalScreen({super.key});
 
+  Future<void> _refreshData(BuildContext context, WidgetRef ref) async {
+    ref.invalidate(jadwalProvider); // Memuat ulang data dari provider
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final jadwalAsyncValue = ref.watch(jadwalProvider);
@@ -27,41 +31,42 @@ class JadwalScreen extends ConsumerWidget {
               width: maxWidth,
               child: jadwalAsyncValue.when(
                 data: (List<JadwalModel> jadwalList) {
-                  // ✅ Jika list kosong, tampilkan pesan
-                  if (jadwalList.isEmpty) {
-                    return const Center(
-                      child: Text(
-                        "Belum ada jadwal",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                    );
-                  }
-
-                  return ListView.builder(
-                    itemCount: jadwalList.length,
-                    itemBuilder: (context, index) {
-                      final jadwal = jadwalList[index];
-                      return InkWell(
-                        onTap: () {
-                          launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
-                              mode: LaunchMode.externalApplication);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CardJadwal(
-                            namaPelatihan: jadwal.namaPelatihan,
-                            tanggalPelatihan: jadwal.tanggalPelatihan,
-                            jenisPelatihan: jadwal.jenisPelatihan,
-                            status: jadwal.status,
-                            onTap: () {
-                              launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
-                                  mode: LaunchMode.externalApplication);
+                  return RefreshIndicator(
+                    onRefresh: () => _refreshData(context, ref),
+                    child: jadwalList.isEmpty
+                        ? const Center(
+                            child: Text(
+                              "Belum ada jadwal",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: jadwalList.length,
+                            itemBuilder: (context, index) {
+                              final jadwal = jadwalList[index];
+                              return InkWell(
+                                onTap: () {
+                                  launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
+                                      mode: LaunchMode.externalApplication);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CardJadwal(
+                                    namaPelatihan: jadwal.namaPelatihan,
+                                    tanggalPelatihan: jadwal.tanggalPelatihan,
+                                    jenisPelatihan: jadwal.jenisPelatihan,
+                                    status: jadwal.status,
+                                    onTap: () {
+                                      launchUrl(
+                                          Uri.parse(jadwal.linkRegis ?? ''),
+                                          mode: LaunchMode.externalApplication);
+                                    },
+                                  ),
+                                ),
+                              );
                             },
                           ),
-                        ),
-                      );
-                    },
                   );
                 },
                 loading: () => Column(
