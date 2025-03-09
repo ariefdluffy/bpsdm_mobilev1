@@ -1,8 +1,10 @@
+import 'package:bpsdm_mobilev1/providers/ad_provider.dart';
 import 'package:bpsdm_mobilev1/providers/api_provider.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class FaqScreen extends ConsumerWidget {
   const FaqScreen({super.key});
@@ -12,6 +14,7 @@ class FaqScreen extends ConsumerWidget {
     final faqAsyncValue = ref.watch(faqProvider);
     final searchQuery = ref.watch(searchQueryProvider);
     final textController = ref.watch(textEditingControllerProvider);
+    final bannerAd = ref.watch(bannerAdProvider);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -126,6 +129,12 @@ class FaqScreen extends ConsumerWidget {
             );
           }),
         ),
+        bottomNavigationBar: bannerAd != null
+            ? SizedBox(
+                height: bannerAd.size.height.toDouble(),
+                child: AdWidget(ad: bannerAd),
+              )
+            : null,
       ),
     );
   }

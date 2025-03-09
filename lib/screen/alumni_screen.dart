@@ -1,10 +1,12 @@
 import 'package:bpsdm_mobilev1/model/alumni_model.dart';
+import 'package:bpsdm_mobilev1/providers/ad_provider.dart';
 import 'package:bpsdm_mobilev1/providers/api_provider.dart';
 import 'package:bpsdm_mobilev1/screen/widget/detail_peserta_dialog.dart';
 import 'package:bpsdm_mobilev1/screen/widget/dropdown_jenis.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
@@ -92,6 +94,7 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
   @override
   Widget build(BuildContext context) {
     final alumniState = ref.watch(alumniProvider);
+    final bannerAd = ref.watch(bannerAdProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -288,6 +291,12 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
           );
         }),
       ),
+      bottomNavigationBar: bannerAd != null
+          ? SizedBox(
+              height: bannerAd.size.height.toDouble(),
+              child: AdWidget(ad: bannerAd),
+            )
+          : null,
     );
   }
 }

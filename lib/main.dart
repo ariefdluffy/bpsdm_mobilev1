@@ -9,10 +9,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bpsdm_mobilev1/screen/berita_screen.dart';
 import 'package:bpsdm_mobilev1/screen/faq_screen.dart';
 import 'package:bpsdm_mobilev1/screen/jadwal_screen.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SupabaseConfig.initialize();
+  await MobileAds.instance.initialize();
 
   runApp(
     const ProviderScope(child: MainApp()),

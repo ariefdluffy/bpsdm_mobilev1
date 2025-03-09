@@ -11,11 +11,14 @@ class JadwalScreen extends ConsumerWidget {
 
   Future<void> _refreshData(BuildContext context, WidgetRef ref) async {
     ref.invalidate(jadwalProvider); // Memuat ulang data dari provider
+    // await ref.read(jadwalProvider.future);
+    print(_refreshData(context, ref));
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final jadwalAsyncValue = ref.watch(jadwalProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Jadwal Pelatihan"),
@@ -30,45 +33,60 @@ class JadwalScreen extends ConsumerWidget {
             return SizedBox(
               width: maxWidth,
               child: jadwalAsyncValue.when(
-                data: (List<JadwalModel> jadwalList) {
-                  return RefreshIndicator(
-                    onRefresh: () => _refreshData(context, ref),
-                    child: jadwalList.isEmpty
-                        ? const Center(
-                            child: Text(
+                data: (List<JadwalModel> jadwalList) => jadwalList.isEmpty
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
                               "Belum ada jadwal",
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
-                          )
-                        : ListView.builder(
-                            itemCount: jadwalList.length,
-                            itemBuilder: (context, index) {
-                              final jadwal = jadwalList[index];
-                              return InkWell(
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                _refreshData(context, ref);
+                              },
+                              icon: const Icon(Icons.refresh),
+                              label: const Text("Muat Ulang"),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.teal,
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 20),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: jadwalList.length,
+                        itemBuilder: (context, index) {
+                          final jadwal = jadwalList[index];
+                          return InkWell(
+                            onTap: () {
+                              launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
+                                  mode: LaunchMode.externalApplication);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CardJadwal(
+                                namaPelatihan: jadwal.namaPelatihan,
+                                tanggalPelatihan: jadwal.tanggalPelatihan,
+                                jenisPelatihan: jadwal.jenisPelatihan,
+                                status: jadwal.status,
                                 onTap: () {
                                   launchUrl(Uri.parse(jadwal.linkRegis ?? ''),
                                       mode: LaunchMode.externalApplication);
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: CardJadwal(
-                                    namaPelatihan: jadwal.namaPelatihan,
-                                    tanggalPelatihan: jadwal.tanggalPelatihan,
-                                    jenisPelatihan: jadwal.jenisPelatihan,
-                                    status: jadwal.status,
-                                    onTap: () {
-                                      launchUrl(
-                                          Uri.parse(jadwal.linkRegis ?? ''),
-                                          mode: LaunchMode.externalApplication);
-                                    },
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                  );
-                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                 loading: () => Column(
                   children: List.generate(
                     5,
