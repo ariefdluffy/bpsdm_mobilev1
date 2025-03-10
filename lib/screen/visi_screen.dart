@@ -8,6 +8,7 @@ class VisiScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Visi Misi'),
+        centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),

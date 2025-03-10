@@ -99,6 +99,7 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Data Alumni"),
+        centerTitle: true,
         backgroundColor: Colors.white,
       ),
       body: Center(

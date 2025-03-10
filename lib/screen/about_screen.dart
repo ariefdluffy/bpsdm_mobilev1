@@ -11,6 +11,7 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tentang Kami'),
+        centerTitle: true,
         backgroundColor: Colors.blueAccent,
       ),
       body: SingleChildScrollView(

@@ -9,6 +9,7 @@ class PengaduanScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pengaduan'),
+        centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),

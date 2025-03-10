@@ -1,7 +1,7 @@
 name: bpsdm_mobilev1
-description: "BPSDM Mobile"
+description: "BPSDM Mobile unOfficial"
 publish_to: "none"
-version: 1.0.2
+version: 1.1.1
 
 environment:
   sdk: ^3.5.3

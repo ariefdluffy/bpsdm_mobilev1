@@ -12,6 +12,7 @@ class DetailBerita extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Berita Umum'),
+        centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),

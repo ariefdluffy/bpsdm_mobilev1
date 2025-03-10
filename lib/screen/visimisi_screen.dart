@@ -8,6 +8,7 @@ class VisiMisiPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Visi & Misi'),
+          centerTitle: true,
           backgroundColor: Colors.blueAccent,
         ),
         body: Center(

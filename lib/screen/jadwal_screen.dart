@@ -22,6 +22,7 @@ class JadwalScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Jadwal Pelatihan"),
+        centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
