@@ -17,6 +17,16 @@ class BeritaScreen extends ConsumerWidget {
     final beritaAsyncValue = ref.watch(beritaProvider);
     final bannerAd = ref.watch(bannerAdProvider);
 
+    final adHelper = ref.read(adHelperProvider);
+
+    // Load iklan saat halaman utama dibuka
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   adHelper.loadAd(() {
+    //     // Callback saat iklan ditutup
+    //     print('Iklan ditutup, kembali ke halaman utama.');
+    //   });
+    // });
+
     return Scaffold(
       appBar: AppBar(title: const Text("Berita BPSDM")),
       body: Center(
