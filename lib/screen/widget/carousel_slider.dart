@@ -44,7 +44,7 @@ class ImageSlider extends ConsumerWidget {
                             // clipBehavior: Clip.hardEdge,
                             child: Image.network(
                               item.imgUrl,
-                              fit: BoxFit.scaleDown,
+                              fit: BoxFit.cover,
                               width: screenWidth * 0.9,
                               loadingBuilder:
                                   (context, child, loadingProgress) {

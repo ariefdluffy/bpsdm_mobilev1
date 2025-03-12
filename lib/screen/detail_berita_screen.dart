@@ -4,28 +4,46 @@ import 'package:bpsdm_mobilev1/providers/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DetailBerita extends ConsumerWidget {
+class DetailBerita extends ConsumerStatefulWidget {
   const DetailBerita({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<DetailBerita> createState() => _DetailBeritaState();
+}
+
+class _DetailBeritaState extends ConsumerState<DetailBerita> {
+  final InterstitialAdHelper _adHelper = InterstitialAdHelper();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _adHelper.loadAd(() {
+      Navigator.pop(context); // 🔄 Kembali ke Home setelah iklan ditutup
+    });
+  }
+
+  /// 🔹 Tangani event "Back"
+  bool _onWillPop() {
+    _adHelper.showAd(context);
+    return false; // ❌ Cegah navigasi langsung tanpa menampilkan iklan
+  }
+
+  @override
+  void dispose() {
+    _adHelper.disposeAd();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final beritaAsyncValue = ref.watch(detailBeritaProvider);
 
-    final adHelper = ref.read(adHelperProvider);
-    // Memuat iklan saat halaman dibuka
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      adHelper.loadAd(() {
-        Navigator.pop(
-            context); // Kembali ke halaman sebelumnya setelah iklan ditutup
-      });
-    });
-
     return PopScope(
-      canPop: false,
+      canPop: false, // ❌ Blokir pop biasa agar bisa tampilkan iklan dulu
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
-          adHelper.showAd(context);
-          return;
+          _onWillPop();
         }
       },
       child: Scaffold(

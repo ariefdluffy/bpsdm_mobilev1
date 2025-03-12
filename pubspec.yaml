@@ -1,13 +1,14 @@
 name: bpsdm_mobilev1
 description: "BPSDM Mobile unOfficial"
 publish_to: "none"
-version: 1.1.1
+version: 1.1.2
 
 environment:
   sdk: ^3.5.3
 
 dependencies:
   carousel_slider: ^5.0.0
+  device_info_plus: ^11.0.0
   dropdown_button2: ^2.3.9
   flutter:
     sdk: flutter
@@ -21,6 +22,7 @@ dependencies:
   intl: ^0.20.2
   logger: ^2.5.0
   riverpod_annotation: ^2.6.1
+  shared_preferences: ^2.5.2
   shimmer: ^3.0.0
   supabase_flutter: ^2.8.3
   url_launcher: ^6.3.1

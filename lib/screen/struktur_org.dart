@@ -47,9 +47,12 @@ class StrukturOrg extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 10,
+          ),
           const Text(
             'KEPALA BADAN',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const Text(
             'Dra. Nina Dewi, M.AP.',
@@ -75,7 +78,7 @@ class StrukturOrg extends StatelessWidget {
                     title: Text(
                       contact["ruang"]!,
                       style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.bold),
+                          fontSize: 14, fontWeight: FontWeight.bold),
                     ),
                     children: [
                       ListTile(

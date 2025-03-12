@@ -69,31 +69,6 @@ class _DropdownJenisState extends State<DropdownJenis> {
 
   @override
   Widget build(BuildContext context) {
-    //   return DropdownButtonFormField<String>(
-    //     isExpanded: true,
-    //     value: widget.selectedKodeJenis ?? "0", // Pastikan tidak null
-    //     hint: const Text("Pilih Jenis"),
-    //     decoration: InputDecoration(
-    //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
-    //       // constraints: const BoxConstraints(
-    //       //   maxHeight: 100, //  Batasi tinggi dropdown
-    //       // ),
-    //       contentPadding:
-    //           const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-    //     ),
-    //     onChanged: widget.onChanged,
-    //     items: jenisList.map((jenis) {
-    //       return DropdownMenuItem<String>(
-    //         value: jenis["value"],
-    //         child: Text(
-    //           jenis["label"] ?? "Tidak Diketahui",
-    //           overflow: TextOverflow.ellipsis,
-    //         ),
-    //       );
-    //     }).toList(),
-    //     menuMaxHeight: 500,
-    //   );
-    // }
     return DropdownButtonFormField2<String>(
       isExpanded: true,
       value: widget.selectedKodeJenis ?? "0",

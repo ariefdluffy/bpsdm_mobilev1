@@ -5,6 +5,7 @@ import 'package:bpsdm_mobilev1/model/berita_model.dart';
 import 'package:bpsdm_mobilev1/model/detail_model.dart';
 import 'package:bpsdm_mobilev1/model/jadwal_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 class ApiService {
   final linkBerita = '';
@@ -40,10 +41,6 @@ class ApiService {
     }
   }
 
-  //   } else {
-  //     throw Exception("Gagal mengambil detail berita");
-  //   }
-  // }
   Future<DetailModel> fetchDetailBerita(String url) async {
     final Uri apiUrl = Uri.parse('$baseUrl/berita/detail');
     // print(apiUrl);
@@ -81,8 +78,8 @@ class ApiService {
         throw Exception("Gagal mengambil data alumni");
       }
     } catch (e, stackTrace) {
-      log("Error get Alumni: $e");
-      log("StackTrace get Alumni: $stackTrace"); // Untuk debugging
+      Logger().e("Error get Alumni: $e");
+      Logger().e("StackTrace get Alumni: $stackTrace"); // Untuk debugging
       throw Exception("Gagal mengambil data alumni");
     }
   }

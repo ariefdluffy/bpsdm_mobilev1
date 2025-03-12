@@ -57,7 +57,7 @@ class CardJadwal extends StatelessWidget {
                   child: Text(
                     ellipsisText(namaPelatihan, 130),
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 3,
@@ -112,7 +112,7 @@ class CardJadwal extends StatelessWidget {
                         Text(
                           ellipsisText(jenisPelatihan, 110),
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 14, fontWeight: FontWeight.bold),
                           // overflow: TextOverflow.ellipsis,
                           // maxLines: 2,
                         ),

