@@ -168,6 +168,14 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Container(
+                    //   child: bannerAd != null
+                    //       ? SizedBox(
+                    //           height: bannerAd.size.height.toDouble(),
+                    //           child: AdWidget(ad: bannerAd),
+                    //         )
+                    //       : null,
+                    // ),
                     const SizedBox(height: 5),
                     // Dropdown Tahun
                     DropdownJenis(

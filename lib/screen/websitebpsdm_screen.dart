@@ -1,4 +1,5 @@
 import 'package:bpsdm_mobilev1/ads/interstitial_ads_page.dart';
+import 'package:bpsdm_mobilev1/screen/widget/ad_banner_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:logger/logger.dart';
@@ -57,6 +58,7 @@ class _WebsiteBpsdmState extends State<WebsiteBpsdm> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  const BannerAdWidget(),
                   _buildItemList(
                       FontAwesomeIcons.blog,
                       'Website BPDSM',

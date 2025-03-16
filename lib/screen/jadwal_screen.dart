@@ -67,6 +67,7 @@ class JadwalScreen extends ConsumerWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            const BannerAdWidget(),
                             const Text(
                               "Belum ada jadwal pelatihan",
                               style: TextStyle(
@@ -126,6 +127,7 @@ class JadwalScreen extends ConsumerWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const BannerAdWidget(),
                       const Icon(Icons.error, color: Colors.red, size: 50),
                       const SizedBox(height: 10),
                       const Text(
@@ -148,7 +150,6 @@ class JadwalScreen extends ConsumerWidget {
                               vertical: 12, horizontal: 20),
                         ),
                       ),
-                      const BannerAdWidget(),
                     ],
                   ),
                 ),

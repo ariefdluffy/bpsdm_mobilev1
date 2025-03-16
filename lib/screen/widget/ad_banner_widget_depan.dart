@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:logger/logger.dart';
 
-class BannerAdWidget extends StatefulWidget {
-  const BannerAdWidget({super.key});
+class BannerAdWidgetDepan extends StatefulWidget {
+  const BannerAdWidgetDepan({super.key});
 
   @override
-  _BannerAdWidgetState createState() => _BannerAdWidgetState();
+  _BannerAdWidgetDepanState createState() => _BannerAdWidgetDepanState();
 }
 
-class _BannerAdWidgetState extends State<BannerAdWidget> {
+class _BannerAdWidgetDepanState extends State<BannerAdWidgetDepan> {
   BannerAd? _bannerAd;
   bool _isAdLoaded = false;
   Timer? _adReloadTimer;
@@ -24,10 +24,10 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
 
   void _loadAd() {
     _bannerAd = BannerAd(
-      adUnitId:
-          'ca-app-pub-3940256099942544/6300978111', // 🔹 Ganti dengan ID iklan Anda
       // adUnitId:
-      //     'ca-app-pub-2393357737286916/2659110471', // 🔹 Ganti dengan ID iklan Anda
+      //     'ca-app-pub-3940256099942544/6300978111', // 🔹 Ganti dengan ID iklan Anda
+      adUnitId:
+          'ca-app-pub-2393357737286916/8914910523', // 🔹 Ganti dengan ID iklan Anda
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(

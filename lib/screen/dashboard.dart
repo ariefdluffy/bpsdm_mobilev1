@@ -1,3 +1,4 @@
+import 'package:bpsdm_mobilev1/screen/widget/ad_banner_widget_depan.dart';
 import 'package:bpsdm_mobilev1/screen/widget/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -120,6 +121,7 @@ class _DashboardState extends State<Dashboard> {
                   },
                 ),
               ),
+              const BannerAdWidgetDepan(),
             ],
           ),
         ),
