@@ -4,6 +4,7 @@ import 'package:bpsdm_mobilev1/services/tele_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
@@ -18,9 +19,8 @@ class _AboutPageState extends State<AboutPage> {
 
   final DeviceInfoHelper deviceInfoHelper = DeviceInfoHelper(
     telegramHelper: TelegramHelper(
-      botToken:
-          '7678341666:AAH_6GTin6WCzxx0zOoySoeZfz6b8FgRfFU', // Ganti dengan token bot Anda
-      chatId: '111519789', // Ganti dengan chat ID Anda
+      botToken: dotenv.env['BOT_TOKEN'] ?? '', // Ganti dengan token bot Anda
+      chatId: dotenv.env['CHAT_ID'] ?? '', // Ganti dengan chat ID Anda
     ),
   );
   bool isLoading = true;
@@ -45,6 +45,11 @@ class _AboutPageState extends State<AboutPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -59,10 +64,10 @@ class _AboutPageState extends State<AboutPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Image.asset('assets/logo.png', width: 100),
-              // const CircleAvatar(
-              //   radius: 40,
-              //   backgroundImage: AssetImage('assets/logo.png'),
-              // ),
+              const CircleAvatar(
+                radius: 40,
+                backgroundImage: AssetImage('assets/logo.png'),
+              ),
               const SizedBox(height: 10),
               const Text(
                 'BPSDM Provinsi Kaltim',

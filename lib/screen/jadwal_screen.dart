@@ -1,4 +1,5 @@
 import 'package:bpsdm_mobilev1/model/jadwal_model.dart';
+import 'package:bpsdm_mobilev1/screen/widget/ad_banner_widget.dart';
 import 'package:bpsdm_mobilev1/screen/widget/card_jadwal.dart';
 import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:flutter/material.dart';
@@ -147,6 +148,7 @@ class JadwalScreen extends ConsumerWidget {
                               vertical: 12, horizontal: 20),
                         ),
                       ),
+                      const BannerAdWidget(),
                     ],
                   ),
                 ),

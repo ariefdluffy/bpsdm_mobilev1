@@ -26,7 +26,7 @@ class ImageSlider extends ConsumerWidget {
             data: (beritaList) => CarouselSlider(
               options: CarouselOptions(
                 viewportFraction: screenWidth > 600 ? 0.5 : 0.8,
-                height: 240.0,
+                height: 260.0,
                 autoPlay: true,
                 aspectRatio: 16 / 9,
                 enlargeCenterPage: true,
@@ -93,18 +93,15 @@ class ImageSlider extends ConsumerWidget {
             ),
             error: (err, stack) {
               return Column(
-                  children: List.generate(1, (index) => const ShimmerBoxErr()));
+                children: List.generate(1, (index) => const ShimmerBoxErr()),
+              );
             },
-            // Error handling,
-            // error: (err, stack) => Center(
-            //   child: Text('Terjadi kesalahan: $err'),
-            // ), // Error handling,
             loading: () => Column(
-                children: List.generate(
-              1,
-              (index) => const ShimmerBox(),
-            ) // Tampilkan shimmer effect
-                ),
+              children: List.generate(
+                1,
+                (index) => const ShimmerBox(),
+              ),
+            ),
           );
         },
       ),

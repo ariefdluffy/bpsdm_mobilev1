@@ -15,7 +15,7 @@ class ShimmerBox extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             width: MediaQuery.sizeOf(context).width,
-            height: 200,
+            height: 180,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),

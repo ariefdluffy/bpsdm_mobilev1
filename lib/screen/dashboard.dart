@@ -39,10 +39,10 @@ class _DashboardState extends State<Dashboard> {
       "color": Colors.red
     },
     {
-      "title": "Pengaduan",
-      "subtitle": "Lapor.go.id",
-      "icon": Icons.report_gmailerrorred,
-      "route": "/pengaduan",
+      "title": "Web Resmi",
+      "subtitle": "BPSDM",
+      "icon": Icons.web_rounded,
+      "route": "/website",
       "color": Colors.red
     },
     {
@@ -64,71 +64,114 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200], // Warna background modern
       appBar: AppBar(
         title: const Text(
           "BPSDM Mobile unOfficial",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
+        elevation: 1,
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const ImageSlider(),
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    childAspectRatio: 1, // Rasio ukuran card
+              // const SizedBox(height: 20),
+
+              // 🔹 Title Menu
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  "Fitur Utama",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
                   ),
-                  itemCount: menuItems.length,
-                  itemBuilder: (context, index) {
-                    var item = menuItems[index];
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+
+              // 🔹 Grid Menu
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    // int crossAxisCount = constraints.maxWidth > 600 ? 4 : 2;
+                    return GridView.builder(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 1, // Rasio lebih proporsional
                       ),
-                      elevation: 5,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, item["route"]);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(item["icon"], size: 22, color: item["color"]),
-                            const SizedBox(height: 5),
-                            Text(
-                              item["title"],
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              item["subtitle"],
-                              style: const TextStyle(
-                                fontSize: 10,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      itemCount: menuItems.length,
+                      itemBuilder: (context, index) {
+                        var item = menuItems[index];
+                        return _buildMenuItem(item, context);
+                      },
                     );
                   },
                 ),
               ),
-              // const Row(
-              //   children: [Text('data')],
-              // )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(Map<String, dynamic> item, BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, item["route"]);
+      },
+      borderRadius: BorderRadius.circular(15),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: item["color"].withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(3, 3),
+            )
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 18,
+              backgroundColor: item["color"].withOpacity(0.1),
+              child: Icon(item["icon"], size: 20, color: item["color"]),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              item["title"],
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            if (item["subtitle"].isNotEmpty)
+              Text(
+                item["subtitle"],
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.black54,
+                ),
+              ),
+          ],
         ),
       ),
     );

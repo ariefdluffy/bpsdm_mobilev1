@@ -8,6 +8,7 @@ import 'package:bpsdm_mobilev1/screen/widget/shimmer_box.dart';
 import 'package:bpsdm_mobilev1/services/device_info_helper.dart';
 import 'package:bpsdm_mobilev1/services/tele_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -67,9 +68,8 @@ class _AlumniScreenState extends ConsumerState<AlumniScreen> {
 
   final DeviceInfoHelper deviceInfoHelper = DeviceInfoHelper(
     telegramHelper: TelegramHelper(
-      botToken:
-          '7678341666:AAH_6GTin6WCzxx0zOoySoeZfz6b8FgRfFU', // Ganti dengan token bot Anda
-      chatId: '111519789', // Ganti dengan chat ID Anda
+      botToken: dotenv.env['BOT_TOKEN'] ?? '', // Ganti dengan token bot Anda
+      chatId: dotenv.env['CHAT_ID'] ?? '', // Ganti dengan chat ID Anda
     ),
   );
   bool isLoading = true;
