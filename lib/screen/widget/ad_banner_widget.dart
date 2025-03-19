@@ -24,10 +24,10 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
 
   void _loadAd() {
     _bannerAd = BannerAd(
-      adUnitId:
-          'ca-app-pub-3940256099942544/6300978111', // 🔹 Ganti dengan ID iklan Anda
       // adUnitId:
-      //     'ca-app-pub-2393357737286916/2659110471', // 🔹 Ganti dengan ID iklan Anda
+      //     'ca-app-pub-3940256099942544/6300978111', // 🔹 Ganti dengan ID iklan Anda
+      adUnitId:
+          'ca-app-pub-2393357737286916/2659110471', // 🔹 Ganti dengan ID iklan Anda
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(

@@ -82,8 +82,8 @@ class _DashboardState extends State<Dashboard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 10),
               const ImageSlider(),
-              // const SizedBox(height: 20),
 
               // 🔹 Title Menu
               const Padding(
@@ -99,7 +99,8 @@ class _DashboardState extends State<Dashboard> {
               ),
 
               // 🔹 Grid Menu
-              Expanded(
+              SizedBox(
+                height: 400,
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     // int crossAxisCount = constraints.maxWidth > 600 ? 4 : 2;

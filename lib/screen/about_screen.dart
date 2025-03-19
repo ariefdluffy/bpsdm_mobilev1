@@ -116,7 +116,7 @@ class _AboutPageState extends State<AboutPage> {
                   'mailto:info@bpsdm.kaltimprov.go.id',
                   'info@bpsdm.kaltimprov.go.id'),
               _buildSocialMediaItem(
-                  Icons.verified_sharp, 'Versi Aplikasi', '', '1.1.2'),
+                  Icons.verified_sharp, 'Versi Aplikasi', '', '1.1.3'),
             ],
           ),
         ),

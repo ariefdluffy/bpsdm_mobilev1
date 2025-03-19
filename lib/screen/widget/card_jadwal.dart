@@ -118,8 +118,10 @@ class CardJadwal extends StatelessWidget {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          'Status: $status - $tanggalPelatihan',
-                          style: const TextStyle(color: Colors.blueGrey),
+                          'Status: $status | $tanggalPelatihan',
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 94, 93, 93),
+                              fontSize: 12),
                           maxLines: 2,
                           textAlign: TextAlign.left,
                           overflow: TextOverflow.ellipsis,
