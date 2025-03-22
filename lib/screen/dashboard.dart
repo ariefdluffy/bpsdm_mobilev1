@@ -100,7 +100,8 @@ class _DashboardState extends State<Dashboard> {
 
               // 🔹 Grid Menu
               SizedBox(
-                height: 400,
+                height: 320,
+                // height: MediaQuery.of(context).size.height * 0.5,
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     // int crossAxisCount = constraints.maxWidth > 600 ? 4 : 2;

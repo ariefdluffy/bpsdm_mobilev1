@@ -20,15 +20,16 @@ class ImageSlider extends ConsumerWidget {
 
     return Expanded(
       child: SizedBox(
-        height: 240,
+        // height: 240,
         child: LayoutBuilder(
           builder: (context, constraints) {
             double screenWidth = constraints.maxWidth;
+
             return beritaAsyncValue.when(
               data: (beritaList) => CarouselSlider(
                 options: CarouselOptions(
                   viewportFraction: screenWidth > 600 ? 0.5 : 0.8,
-                  height: 270.0,
+                  height: MediaQuery.of(context).size.height,
                   autoPlay: true,
                   aspectRatio: 16 / 9,
                   enlargeCenterPage: true,
@@ -47,6 +48,8 @@ class ImageSlider extends ConsumerWidget {
                               child: Image.network(
                                 item.imgUrl,
                                 fit: BoxFit.cover,
+                                scale: 0.9,
+                                // height: 350,
                                 width: screenWidth * 0.9,
                                 loadingBuilder:
                                     (context, child, loadingProgress) {
