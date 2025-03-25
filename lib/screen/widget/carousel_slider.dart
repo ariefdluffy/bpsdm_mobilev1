@@ -49,7 +49,7 @@ class ImageSlider extends ConsumerWidget {
                                 item.imgUrl,
                                 fit: BoxFit.cover,
                                 scale: 0.9,
-                                // height: 350,
+                                // height: 240,
                                 width: screenWidth * 0.9,
                                 loadingBuilder:
                                     (context, child, loadingProgress) {
