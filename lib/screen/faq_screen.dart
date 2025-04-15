@@ -122,7 +122,8 @@ class FaqScreen extends ConsumerWidget {
                         ),
                       ),
                       error: (error, stack) =>
-                          Center(child: Text('Error: $error')),
+                         
+                          const Center(child: Text('Error: Data Kosong')),
                     ),
                   ),
                 ],

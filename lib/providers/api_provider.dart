@@ -39,9 +39,13 @@ final detailBeritaProvider = FutureProvider<DetailModel>((ref) async {
 final faqProvider = FutureProvider<List<FAQModel>>((ref) async {
   final response = await Supabase.instance.client.from('faqs').select();
 
-  // print(response);
+  if (response == null || response.isEmpty) {
+    throw Exception('Tidak ada data FAQ tersedia.');
+  }
+
   return response.map((faq) => FAQModel.fromJson(faq)).toList();
 });
+
 
 final searchQueryProvider = StateProvider<String>((ref) => "");
 
